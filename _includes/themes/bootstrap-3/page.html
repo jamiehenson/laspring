@@ -1,9 +1,30 @@
-<div class="page-header">
-  <h1>{{ page.title }} {% if page.tagline %} <small>{{ page.tagline }}</small>{% endif %}</h1>
+<div class="row standard-header">
+  <div class="col-xs-4">
+  </div>
+
+  <div class="col-xs-4 title">
+    <a href="/">
+      <object class="title-image" type="image/svg+xml" data="laspring-dark.svg">
+        Your browser does not support SVG
+      </object>
+    </a>
+  </div>
+
+  <div class="col-xs-4">
+    <div class="social-links">
+      <i class="fa fa-2x fa-facebook"></i>
+      <i class="fa fa-2x fa-twitter"></i>
+      <i class="fa fa-2x fa-soundcloud"></i>
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="site-links">
+      <span><a href="/about">About</a></span> | <span><a href="/shows">Shows</a></span> | <span><a href="/contact">Contact</a></span>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    {{ content }}
-  </div>
+<div class="row standard-body">
+  {{ content }}
 </div>

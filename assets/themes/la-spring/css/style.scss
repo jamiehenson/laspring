@@ -3,9 +3,77 @@
 
 $bg-color: #050424;
 
-#wrap {
-  background-color: $bg-color;
+body {
+  font-family: "Noto Sans", "Helvetica", sans;
 }
 
-#footer {
+#wrap {
+  background-color: $bg-color;
+  background-size: cover;
+  background-image: url("../images/aaron.jpg")
+}
+
+.front-frame {
+  margin: 25vh auto;
+  background: rgba(0,0,0,0.2);
+  border-radius: 0.5em;
+  padding: 0.2em 1.5em;
+  .site-links {
+    margin-top: 1em;
+  }
+}
+
+.title-image {
+  margin-top: 2em;
+  width: 100%;
+}
+
+.site-links {
+  color: white;
+  font-size: 1.8em;
+  text-align: center;
+  span {
+    margin: 0 1em;
+  }
+  a {
+    color: white;
+  }
+}
+
+.social-links {
+  color: white;
+  margin: 2em;
+  text-align: center;
+  i {
+    margin: 0 1em;
+  }
+}
+
+.standard-header, .standard-body {
+  background: rgba(0,0,0,0.6);
+}
+
+.standard-header {
+  .title {
+    a {
+      display: block;
+    }
+    object {
+      pointer-events: none;
+    }
+  }
+  .site-links {
+    margin-top: 0.5em;
+  }
+}
+
+.standard-body {
+  color: white;
+  font-size: 1.2em;
+  padding: 2em;
+  border-radius: 0 0 0.5em 0.5em;
+  img {
+    width: 100%;
+    border-radius: 0.5em;
+  }
 }
