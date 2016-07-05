@@ -24,8 +24,26 @@ body {
 }
 
 .title-image {
-  margin-top: 2em;
   width: 100%;
+  transition: all 0.2s;
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  &:hover {
+    transition: all 0.2s;
+    border-radius: 1em;
+    background: white;
+    path {
+      fill: purple;
+    }
+  }
+  path {
+    pointer-events: all;
+    transition: all 0.2s;
+    &:hover {
+      fill: red;
+      transition: all 0.2s;
+    }
+  }
 }
 
 .site-links {
