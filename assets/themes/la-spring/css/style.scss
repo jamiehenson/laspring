@@ -32,17 +32,24 @@ body {
   color: white;
   font-size: 1.8em;
   text-align: center;
-  span {
-    margin: 0 1em;
-  }
-  a {
+  .site-link {
     color: white;
+    padding: 0.2em 1.25em;
+    transition: all 0.3s;
+    width: 150px;
+    &:hover {
+      background: white;
+      box-shadow: 0 0 1px 0px white;
+      transition: all 0.3s;
+      text-decoration: none;
+      border-radius: 1em;
+      color: black;
+    }
   }
   .site-link.current {
-    padding: 0.2em 0.5em;
-    border-radius: 0.2em;
     color: black;
     background-color: white;
+    border-radius: 1em;
   }
 }
 
@@ -50,8 +57,22 @@ body {
   color: white;
   margin: 2em;
   text-align: center;
+  a {
+    color: white;
+  }
   i {
-    margin: 0 1em;
+    width: 2em;
+    height: 2em;
+    padding-top: 0.5em;
+    margin: 0 0.5em;
+    transition: all 0.5s;
+    cursor: pointer;
+    &:hover {
+      background: white;
+      color: black;
+      transition: all 0.5s;
+      border-radius: 100%;
+    }
   }
 }
 
@@ -67,9 +88,6 @@ body {
     object {
       pointer-events: none;
     }
-  }
-  .site-links {
-    margin-top: 0.5em;
   }
 }
 
