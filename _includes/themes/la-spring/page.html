@@ -82,4 +82,33 @@
 
 <div class="row standard-body">
   {{ content }}
+
+  <hr/>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".signup-modal">Sign up for our Mailing List</button>
+
+    <div class="modal fade signup-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-heading">
+          <label for="mce-EMAIL">Subscribe to our mailing list</label>
+        </div>
+        <div class="modal-content">
+          <div id="mc_embed_signup">
+            <form action="//wearelapsring.us13.list-manage.com/subscribe/post?u=6f35f393bfd9846e4f28f9fb7&amp;id=d5dbb8118c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+                <div class="form-group">
+                  <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
+                </div>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6f35f393bfd9846e4f28f9fb7_d5dbb8118c" tabindex="-1" value=""></div>
+                <div class="form-group">
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
