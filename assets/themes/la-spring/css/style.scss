@@ -6,16 +6,17 @@ $mobile: 768px;
 
 body {
   font-family: "Poppins", "Helvetica", sans;
+  background: black;
 }
 
 #wrap {
   background-color: $bg-color;
   background-size: cover;
-  background-image: url("../images/aaron.jpg")
+  background-image: url("../images/park.jpg")
 }
 
 .front-frame {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.8);
   border-radius: 0.5em;
   padding: 0.2em 3em;
   transition: all 0.5s;
@@ -120,7 +121,7 @@ body {
 }
 
 .standard-header, .standard-body {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.8);
 }
 
 .standard-header {
@@ -154,4 +155,10 @@ body {
   .modal-content {
     background: none;
   }
+}
+
+.landing-subtitle {
+  text-align: center;
+  color: white;
+  font-size: 3em;
 }
