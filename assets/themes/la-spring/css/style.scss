@@ -10,9 +10,12 @@ body {
 }
 
 #wrap {
-  background-color: $bg-color;
-  background-size: cover;
-  background-image: url("../images/parka.jpg")
+  background: {
+    color: $bg-color;
+    image: url("../images/tunnel.jpeg");
+    position: bottom center;
+    size: cover;
+  }
 }
 
 .front-frame {
