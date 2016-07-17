@@ -1,20 +1,15 @@
 ---
 ---
 
-$bg-color: #050424;
 $mobile: 768px;
 
 body {
   font-family: "Poppins", "Helvetica", sans;
   background: rgb(46,8,84);
-}
-
-#wrap {
   background: {
-    color: $bg-color;
     image: url("../images/faded-cropped.jpg");
     position: center center;
-    size: cover;
+    attachment: fixed;
   }
 }
 
