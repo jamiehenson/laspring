@@ -8,6 +8,11 @@
     {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
     <meta name="author" content="{{ site.author.name }}">
 
+    <meta property="og:image" content="{{ ASSET_PATH }}/images/logo-square.jpg" />
+    <meta property="og:description" content="L.A. Spring are a 4-piece indie pop band, based in London." />
+    <meta property="og:url" content="http://wearelaspring.com" />
+    <meta property="og:title" content="L.A. Spring" />
+
     <!-- Enable responsive viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -38,5 +43,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{ ASSET_PATH }}/js/laspring.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-80885837-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>
