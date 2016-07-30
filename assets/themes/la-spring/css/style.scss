@@ -14,10 +14,11 @@ body {
 }
 
 #wrap {
-  height: 100vh;
-  background: rgba(46,8,84,0.4);
-  @media screen and (min-width: $mobile) {
-    background: none;
+  @media screen and (max-width: $mobile - 1) {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background: rgba(46,8,84,0.25);
   }
 }
 
@@ -186,6 +187,9 @@ body {
   border-radius: 0.5em 0.5em 0 0;
   padding: 1.5em;
   right: 2em;
+  @media screen and (max-width: $mobile - 1) {
+    left: 2em;
+  }
   animation: {
     name: mailinglistpop;
     delay: 10s;
