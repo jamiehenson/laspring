@@ -18,8 +18,6 @@ GEM
       addressable (~> 2)
     ffi (1.9.14)
     forwardable-extended (2.6.0)
-    haml (4.0.7)
-      tilt
     htmlcompressor (0.3.0)
     jekyll (3.1.6)
       colorator (~> 0.1)
@@ -38,9 +36,6 @@ GEM
       sprockets (~> 3.3)
     jekyll-coffeescript (1.0.1)
       coffee-script (~> 2.2)
-    jekyll-haml (0.1.4)
-      haml (>= 3.0.0)
-      jekyll (>= 0.10.0)
     jekyll-minifier (0.0.7)
       cssminify (~> 1.0)
       htmlcompressor (~> 0.3)
@@ -71,7 +66,6 @@ GEM
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    tilt (2.0.5)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -84,7 +78,6 @@ DEPENDENCIES
   jekyll (= 3.1.6)
   jekyll-assets
   jekyll-coffeescript
-  jekyll-haml
   jekyll-minifier
   jekyll-sitemap
 
