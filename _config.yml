@@ -28,7 +28,6 @@ production_url : http://wearelaspring.com
 gems:
   - jekyll-sitemap
   - jekyll-coffeescript
-  - jekyll-haml
   - jekyll-minifier
   - jekyll-assets
   - autoprefixer-rails
