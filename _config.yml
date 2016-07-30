@@ -33,6 +33,9 @@ gems:
   - jekyll-assets
   - autoprefixer-rails
 
+haml4gh:
+  source: "/_includes/themes/la-spring/"
+
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
