@@ -11,6 +11,8 @@ GEM
     cssminify (1.0.2)
     execjs (2.5.2)
     ffi (1.9.8)
+    haml (4.0.7)
+      tilt
     hitimes (1.2.2)
     htmlcompressor (0.3.0)
     jekyll (3.1.6)
@@ -24,6 +26,9 @@ GEM
       safe_yaml (~> 1.0)
     jekyll-coffeescript (1.0.1)
       coffee-script (~> 2.2)
+    jekyll-haml (0.1.4)
+      haml (>= 3.0.0)
+      jekyll (>= 0.10.0)
     jekyll-minifier (0.0.7)
       cssminify (~> 1.0)
       htmlcompressor (~> 0.3)
@@ -48,6 +53,7 @@ GEM
     rouge (1.11.1)
     safe_yaml (1.0.4)
     sass (3.4.13)
+    tilt (2.0.5)
     timers (4.0.1)
       hitimes
     uglifier (2.7.2)
@@ -60,6 +66,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 3.1)
   jekyll-coffeescript
+  jekyll-haml
   jekyll-minifier
   jekyll-sitemap
 

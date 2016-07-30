@@ -1,0 +1,14 @@
+.front-frame
+  %object.title-image{data: "{{ ASSET_PATH }}/images/laspring-dark.svg", type: "image/svg+xml"}
+    %img{src: "/images/logo-fallback.png"}/
+  .social-links
+    %a{href: "//twitter.com/wearelaspring", target: "_blank"}
+      %i.fa.fa-3x.fa-twitter
+    %a{href: "//instagram.com/wearelaspring", target: "_blank"}
+      %i.fa.fa-3x.fa-instagram
+    %a{href: "//soundcloud.com/wearelaspring", target: "_blank"}
+      %i.fa.fa-3x.fa-soundcloud
+  %p.landing-subtitle
+    \- COMING SOON -
+
+{% haml themes/la-spring/partials/mailchimp.haml %}
