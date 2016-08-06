@@ -2,14 +2,17 @@
 ---
 
 $mobile: 768px;
+$main-colour: #00fad5;
+$darker-colour: darken($main-colour, 30%);
 
 body {
   font-family: "Poppins", "Helvetica", sans;
-  background: rgb(46,8,84);
+  background: $main-colour;
   background: {
-    image: url("../images/faded-cropped.jpg");
+    color: $main-colour;
     position: center center;
     attachment: fixed;
+    size: cover;
   }
 }
 
@@ -18,31 +21,57 @@ body {
     height: 100vh;
     position: absolute;
     top: 0;
-    background: rgba(46,8,84,0.25);
+    // background: rgba(46,8,84,0.25);
   }
 }
 
 .front-frame {
-  background: rgba(46,8,84,0.6);
   border-radius: 0.5em;
   transition: all 0.5s;
   padding: 0.2em 1em;
   margin: 1em 0;
   @media screen and (min-width: $mobile) {
     padding: 0.2em 3em;
-    margin: 25vh auto;
+    margin-top: 25vh;
   }
   .site-links {
     margin-top: 1em;
   }
   &:hover {
-    box-shadow: 0 0 30px 0 white;
     border-radius: 2em;
     transition: all 0.2s;
     .title-image {
       padding: 1.3em 1em 1.3em;
       border-bottom: 4px solid white;
       border-top: 4px solid white;
+    }
+  }
+  .gigs {
+    span {
+      font-size: 2em;
+      color: white;
+      transition: 0.3s all;
+    }
+    div {
+      padding: 0.5em;
+      &:first-child {
+        border-right: 3px solid white;
+      }
+      &:hover {
+        background: white;
+        box-shadow: 0 0 1px 0px white;
+        transition: all 0.3s;
+        text-decoration: none;
+        border-radius: 0.5em;
+        span {
+          color: $darker-colour;
+          transition: 0.3s all;
+        }
+        border-radius: 0 0.5em 0.5em 0;
+        &:first-child {
+          border-radius: 0.5em 0 0 0.5em;
+        }
+      }
     }
   }
 }
@@ -63,7 +92,7 @@ body {
       border-radius: 1em;
       background: white;
       path {
-        fill: black;
+        fill: $darker-colour;
       }
     }
   }
@@ -92,7 +121,7 @@ body {
       color: black;
     }
     &.current {
-      color: black;
+      color: $darker-colour;
       background-color: white;
       border-radius: 0.5em;
     }
@@ -124,7 +153,7 @@ body {
     cursor: pointer;
     &:hover {
       background: white;
-      color: black;
+      color: $darker-colour;
       transition: all 0.5s;
       border-radius: 100%;
       text-decoration: none;
@@ -181,18 +210,19 @@ body {
 
 .mailchimp {
   position: fixed;
-  background: rgba(46,8,84,0.6);
   bottom: -180px;
   height: 180px;
   border-radius: 0.5em 0.5em 0 0;
   padding: 1.5em;
-  right: 2em;
+  left: 35%;
+  right: 35%;
   @media screen and (max-width: $mobile - 1) {
-    left: 2em;
+    right: 5%;
+    left: 5%;
   }
   animation: {
     name: mailinglistpop;
-    delay: 10s;
+    delay: 5s;
     duration: 0.5s;
     iteration-count: 1;
     fill-mode: forwards;
@@ -206,6 +236,8 @@ body {
   }
   .button {
     margin-top: 0.5em;
+    background: $darker-colour;
+    border: 0;
   }
 }
 
