@@ -4,27 +4,21 @@
     <meta charset="utf-8"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <title>{{ page.title }}</title>
+    <meta content="{{ page.description }}" name="description"/>
+    <meta content="{{ site.author.name }}" name="author"/>
+    <meta content="http://wearelaspring.com/assets/themes/la-spring/images/logo-square.jpg" property="og:image"/>
+    <meta content="L.A. Spring are a 4-piece indie pop band, based in London." property="og:description"/>
+    <meta content="http://wearelaspring.com" property="og:url"/>
+    <meta content="L.A. Spring" property="og:title"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="{{ ASSET_PATH }}/css/style.css?body=1" media="all" rel="stylesheet" type="text/css"></link>
+    <link href="{{ BASE_PATH }}{{ site.JB.atom_path  %> %>" rel="alternate" title="Sitewide ATOM Feed" type="application/atom+xml"></link>
+    <link href="{{ BASE_PATH }}{{ site.JB.rss_path  %> %>" rel="alternate" title="Sitewide RSS Feed" type="application/rss+xml"></link>
+    <link href="{{ ASSET_PATH }}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
+    <link href="{{ ASSET_PATH }}/images/favicon.ico" rel="icon" type="image/x-icon"></link>
   </head>
   <body>
-    <p>
-      <meta content="{{ page.description }}" name="description"/>
-      <meta content="{{ site.author.name }}" name="author"/>
-      <meta content="http://wearelaspring.com/assets/themes/la-spring/images/logo-square.jpg" property="og:image"/>
-      <meta content="L.A. Spring are a 4-piece indie pop band, based in London." property="og:description"/>
-      <meta content="http://wearelaspring.com" property="og:url"/>
-      <meta content="L.A. Spring" property="og:title"/>
-      <!-- Enable responsive viewport
-      -->
-      <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-      <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-      <link href="{{ ASSET_PATH }}/css/style.css?body=1" media="all" rel="stylesheet" type="text/css"></link>
-      <!-- atom & rss feed
-      -->
-      <link href="{{ BASE_PATH }}{{ site.JB.atom_path  %> %>" rel="alternate" title="Sitewide ATOM Feed" type="application/atom+xml"></link>
-      <link href="{{ BASE_PATH }}{{ site.JB.rss_path  %> %>" rel="alternate" title="Sitewide RSS Feed" type="application/rss+xml"></link>
-      <link href="{{ ASSET_PATH }}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
-      <link href="{{ ASSET_PATH }}/images/favicon.ico" rel="icon" type="image/x-icon"></link>
-    </p>
     <div id="wrap">
       <div class="container">
         {{ content }}
