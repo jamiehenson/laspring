@@ -25,6 +25,7 @@ body {
 }
 
 #wrap {
+  min-width: 250px;
   @media screen and (max-width: $mobile - 1) {
     height: 100vh;
     position: absolute;
@@ -228,8 +229,8 @@ body {
 
 .mailchimp {
   position: fixed;
-  bottom: -180px;
-  height: 180px;
+  bottom: -200px;
+  height: 200px;
   border-radius: 0.5em 0.5em 0 0;
   padding: 1.5em;
   left: 30%;
@@ -240,7 +241,7 @@ body {
   }
   animation: {
     name: mailinglistpop;
-    delay: 5s;
+    delay: 0s;
     duration: 0.5s;
     iteration-count: 1;
     fill-mode: forwards;
@@ -257,9 +258,19 @@ body {
     background: $darker-colour;
     border: 0;
   }
+  .field {
+    display: inline-block;
+    width: 45%;
+    transition: 0.5s all;
+    &.focused {
+      width: 100%;
+      margin-bottom: 0.5em;
+      transition: 0.5s all;
+    }
+  }
 }
 
 @keyframes mailinglistpop {
-  from {bottom: -180px;}
+  from {bottom: -200px;}
   to {bottom: 0;}
 }
