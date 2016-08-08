@@ -37,9 +37,10 @@ body {
   border-radius: 0.5em;
   transition: all 0.5s;
   padding: 0.2em 1em;
-  margin: 1em 0;
+  margin: 0;
   @media screen and (min-width: $mobile) {
     padding: 0.2em 3em;
+    margin: 1em 0;
     margin-top: 25vh;
   }
   .site-links {
@@ -56,7 +57,10 @@ body {
   }
   .gigs {
     span {
-      font-size: 2em;
+      font-size: 1.8em;
+      @media screen and (min-width: $mobile) {
+        font-size: 2em;
+      }
       color: white;
       transition: 0.3s all;
     }
@@ -166,8 +170,8 @@ body {
   i {
     width: 2em;
     height: 2em;
+    margin: 0 0.3em;
     padding-top: 0.5em;
-    margin: 0 0.5em;
     transition: all 0.5s;
     cursor: pointer;
     &:hover {
@@ -180,6 +184,7 @@ body {
     font-size: 2em;
     @media screen and (min-width: $mobile) {
       font-size: 3em;
+      margin: 0 0.5em;
     }
   }
 }
@@ -230,7 +235,6 @@ body {
 .mailchimp {
   position: fixed;
   bottom: -200px;
-  height: 200px;
   border-radius: 0.5em 0.5em 0 0;
   padding: 1.5em;
   left: 30%;
