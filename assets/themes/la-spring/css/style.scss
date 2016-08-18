@@ -237,7 +237,6 @@ body {
 
 .mailchimp {
   position: fixed;
-  bottom: -200px;
   border-radius: 0.5em 0.5em 0 0;
   padding: 1.5em;
   left: 30%;
@@ -246,13 +245,6 @@ body {
   @media screen and (max-width: $mobile - 1) {
     right: 5%;
     left: 5%;
-  }
-  animation: {
-    name: mailinglistpop;
-    delay: 5s;
-    duration: 0.5s;
-    iteration-count: 1;
-    fill-mode: forwards;
   }
   label {
     display: block;
@@ -275,6 +267,22 @@ body {
       margin-bottom: 0.5em;
       transition: 0.5s all;
     }
+  }
+  .close {
+    color: white;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    font-size: 1.5em;
+    opacity: 0.9;
+  }
+  &.open {
+    bottom: 0;
+    transition: 0.5s all;
+  }
+  &.closed {
+    bottom: -200px;
+    transition: 0.5s all;
   }
 }
 

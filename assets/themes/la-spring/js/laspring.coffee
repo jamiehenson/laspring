@@ -11,3 +11,10 @@ $ ->
 
   $(".field").focusout ->
     $(".field").removeClass "focused"
+
+  window.setTimeout (->
+    $(".mailchimp").removeClass("closed").addClass("open")
+  ), 5000
+
+  $(".close").click ->
+    $(".mailchimp").removeClass("open").addClass("closed")
