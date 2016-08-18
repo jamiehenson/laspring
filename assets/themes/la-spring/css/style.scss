@@ -41,7 +41,7 @@ body {
   @media screen and (min-width: $mobile) {
     padding: 0.2em 3em;
     margin: 1em 0;
-    margin-top: 25vh;
+    margin-top: 3em;
   }
   .site-links {
     margin-top: 1em;
@@ -242,6 +242,7 @@ body {
   padding: 1.5em;
   left: 30%;
   right: 30%;
+  background: rgba(0, 250, 213, 0.7);
   @media screen and (max-width: $mobile - 1) {
     right: 5%;
     left: 5%;
@@ -280,4 +281,11 @@ body {
 @keyframes mailinglistpop {
   from {bottom: -200px;}
   to {bottom: 0;}
+}
+
+.soundcloud-widget {
+  margin: 1em auto;
+  @media screen and (min-width: $mobile) {
+    margin: 2em auto;
+  }
 }
