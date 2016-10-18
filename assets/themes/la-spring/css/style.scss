@@ -300,3 +300,19 @@ body {
     margin: 2em auto;
   }
 }
+
+.spotify-widget {
+  background: dimgrey;
+  padding: 1em;
+  margin: 0 auto;
+  width: 228px;
+  color: white;
+  transition: all 0.3s;
+  border-radius: 5px;
+  &:hover {
+    box-shadow: 0 0 0 2px white;
+    transition: all 0.3s;
+    border-radius: 1em;
+    background: #333333;
+  }
+}
