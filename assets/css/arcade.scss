@@ -143,6 +143,7 @@ body {
     text-align: center;
     padding: 1em;
     flex-direction: column;
+    cursor: pointer;
   }
   .game-name {
     flex: 1;
@@ -154,6 +155,41 @@ body {
   }
   .fa-lock, .fa-unlock {
     font-size: 5em;
+  }
+}
+
+.game-view {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-family: "Arcade";
+  color: white;
+  .game-frame {
+    display: none;
+  }
+  .header, .game, .footer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .header {
+    font-size: 4em;
+  }
+  .game {
+    height: 100%;
+    img {
+      max-width: 50%;
+      margin: 1em;
+      border-radius: 0.5em;
+    }
+  }
+  .back {
+    padding: 1em;
+    border: 3px solid yellow;
+    background: blue;
+    cursor: pointer;
   }
 }
 
@@ -267,39 +303,17 @@ body {
   }
 }
 
-@keyframes turn-off {
+@keyframes overlay-anim {
   0% {
-    transform: scale(1,1.3) translate3d(0,0,0);
-    filter: brightness(1);
-    opacity: 1;
+    visibility: hidden;
   }
-  60% {
-    transform: scale(1.3,0.001) translate3d(0,0,0);
-    filter: brightness(10);
+  20% {
+    visibility: hidden;
+  }
+  21% {
+    visibility: visible;
   }
   100% {
-    animation-timing-function: $ease-in-quint;
-    transform: scale(0.000,0.0001) translate3d(0,0,0);
-    filter: brightness(50);
+    visibility: hidden;
   }
 }
-
-@keyframes overlay-anim{
-  0%{
-    visibility:hidden;
-  }
-  20%{
-    visibility:hidden;
-  }
-  21%{
-    visibility:visible;
-  }
-  100%{
-    visibility:hidden;
-  }
-}
-
-// #switch~.container>.screen{
-//   animation: turn-off 0.55s $ease-out-quint;
-//   animation-fill-mode:forwards;
-// }
