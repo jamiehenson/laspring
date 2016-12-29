@@ -2,6 +2,13 @@
 ---
 
 $ ->
+  color = '#'
+  color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)] for i in [1..6]
+
+  $(".arcade-header").css("background-color", color)
+  $(".arcade-drawer a").css("background-color", color)
+  $(".arcade-padder").css("background-color", color)
+
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
     $(".game-menu").hide()
