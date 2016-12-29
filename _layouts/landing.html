@@ -1,1 +1,71 @@
-{% include landing.html %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <title>{{ page.title }}</title>
+    <meta content="{{ site.author.name }}" name="author"/>
+    <meta content="{{ site.author.name }}" property="og:title"/>
+    <meta content="{{ site.description }}" name="description"/>
+    <meta content="{{ site.description }}" property="og:description"/>
+    <meta content="http://wearelaspring.com/assets/images/logo-square.jpg" property="og:image"/>
+    <meta content="http://wearelaspring.com" property="og:url"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="/assets/css/landing.css?body=1" media="all" rel="stylesheet" type="text/css"></link>
+    <link href="/assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
+    <link href="/assets/images/favicon.ico" rel="icon" type="image/x-icon"></link>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="container">
+        <div class="front-frame">
+          <object class="title-image" data="/assets/images/laspring-dark.svg" type="image/svg+xml">
+            <img src="/assets/images/logo-fallback.png"/>
+          </object>
+          <div class="social-links">
+            <a href="//twitter.com/wearelaspring" target="_blank">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="//instagram.com/wearelaspring" target="_blank">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="//soundcloud.com/wearelaspring" target="_blank">
+              <i class="fa fa-soundcloud"></i>
+            </a>
+            <a href="//open.spotify.com/artist/1bt62fFZd8yHPanztqbA0v" target="_blank">
+              <i class="fa fa-spotify"></i>
+            </a>
+            <a href="//itunes.apple.com/gb/artist/l.a.-spring/id1165466126" target="_blank">
+              <i class="fa fa-apple"></i>
+            </a>
+          </div>
+          <div class="soundcloud-widget">
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/278336648&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+          </div>
+        </div>
+        {% include partials/mailchimp.html %}
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/laspring.js"></script>
+    <script>
+      (function() {
+        var css = document.createElement('link');
+        css.href = '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+        css.rel = 'stylesheet';
+        css.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(css);
+      })();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-80885837-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
