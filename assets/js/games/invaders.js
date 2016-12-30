@@ -1,12 +1,14 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'spice-invaders', { preload: preload, create: create, update: update, render: render });
+var worldX = 500;
+var worldY = 360;
+var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
-  game.load.image('bullet', 'assets/games/invaders/bullet.png');
-  game.load.image('enemyBullet', 'assets/games/invaders/enemy-bullet.png');
-  game.load.spritesheet('invader', 'assets/games/invaders/invader32x32x4.png', 32, 32);
-  game.load.image('ship', 'assets/games/invaders/player.png');
-  game.load.spritesheet('kaboom', 'assets/games/invaders/explode.png', 128, 128);
-  game.load.image('starfield', 'assets/images/ains.png');
+  game.load.image('bullet', 'assets/images/games/spice/icecream.png');
+  game.load.image('enemyBullet', 'assets/images/games/spice/fire.png');
+  game.load.image('invader', 'assets/images/games/spice/chili.png', 30, 30);
+  game.load.image('ship', 'assets/images/games/spice/hand.png');
+  game.load.image('background', 'assets/images/games/spice/floor.jpg');
+  game.load.image('kaboom', 'assets/images/games/spice/water.png', 128, 128);
   game.load.bitmapFont('arcade', 'assets/fonts/arcade.png');
 }
 
@@ -17,7 +19,7 @@ var bulletTime = 0;
 var cursors;
 var fireButton;
 var explosions;
-var starfield;
+var background;
 var score = 0;
 var scoreString = '';
 var scoreText;
@@ -30,8 +32,8 @@ var livingEnemies = [];
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
-  //  The scrolling starfield background
-  starfield = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+  //  The scrolling background background
+  background = game.add.tileSprite(0, 0, worldX, worldY, 'background');
 
   //  Our bullet group
   bullets = game.add.group();
@@ -54,8 +56,10 @@ function create() {
   enemyBullets.setAll('checkWorldBounds', true);
 
   //  The hero!
-  player = game.add.sprite(400, 500, 'ship');
+  player = game.add.sprite(worldX/2, worldY - 50, 'ship');
   player.anchor.setTo(0.5, 0.5);
+  player.width = 40;
+  player.height = 40;
   game.physics.enable(player, Phaser.Physics.ARCADE);
 
   //  The baddies!
@@ -67,23 +71,25 @@ function create() {
 
   //  The score
   scoreString = 'Score : ';
-  scoreText = game.add.text(10, 10, scoreString + score, { font: '20px arcade', fill: '#fff' });
+  scoreText = game.add.text(10, 10, scoreString + score, { font: '20px arcade', fill: 'yellow' });
 
   //  Lives
   lives = game.add.group();
-  game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px arcade', fill: '#fff' });
+  game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px arcade', fill: 'yellow' });
 
   //  Text
-  stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '50px arcade', fill: '#fff' });
+  stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '20px arcade', fill: 'yellow' });
   stateText.anchor.setTo(0.5, 0.5);
   stateText.visible = false;
 
   for (var i = 0; i < 3; i++)
   {
-      var ship = lives.create(game.world.width - 100 + (30 * i), 60, 'ship');
+      var ship = lives.create(game.world.width - 100 + (35 * i), 60, 'ship');
       ship.anchor.setTo(0.5, 0.5);
       ship.angle = 90;
-      ship.alpha = 0.4;
+      ship.alpha = 0.8;
+      ship.width = 35;
+      ship.height = 35;
   }
 
   //  An explosion pool
@@ -101,19 +107,19 @@ function createAliens () {
   {
       for (var x = 0; x < 10; x++)
       {
-          var alien = aliens.create(x * 48, y * 50, 'invader');
+          var alien = aliens.create(x * 40, y * 35, 'invader');
           alien.anchor.setTo(0.5, 0.5);
-          alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
-          alien.play('fly');
+          alien.width = 25;
+          alien.height = 25;
           alien.body.moves = false;
       }
   }
 
-  aliens.x = 100;
+  aliens.x = 10;
   aliens.y = 50;
 
   //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
-  var tween = game.add.tween(aliens).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+  var tween = game.add.tween(aliens).to( { x: 160 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
   //  When the tween loops it calls descend
   tween.onLoop.add(descend, this);
@@ -131,7 +137,7 @@ function descend() {
 
 function update() {
   //  Scroll the background
-  starfield.tilePosition.y += 2;
+  background.tilePosition.y += 1;
 
   if (player.alive)
   {
@@ -165,10 +171,7 @@ function update() {
 }
 
 function render() {
-  // for (var i = 0; i < aliens.length; i++)
-  // {
-  //     game.debug.body(aliens.children[i]);
-  // }
+    game.debug.body('ship');
 }
 
 function collisionHandler (bullet, alien) {
@@ -191,7 +194,7 @@ function collisionHandler (bullet, alien) {
       scoreText.text = scoreString + score;
 
       enemyBullets.callAll('kill',this);
-      stateText.text = " You Won, \n Click to restart";
+      stateText.text = " Hey hey, you won!\nHave a coffee moment.";
       stateText.visible = true;
 
       //the "click to restart" handler
@@ -219,8 +222,9 @@ function enemyHitsPlayer (player,bullet) {
   {
       player.kill();
       enemyBullets.callAll('kill');
+      explosion.play('kaboom', 30, false, true);
 
-      stateText.text=" GAME OVER \n Click to restart";
+      stateText.text="Too zingy...\nTap to restart!";
       stateText.visible = true;
 
       //the "click to restart" handler
@@ -242,6 +246,8 @@ function enemyFires () {
 
   if (enemyBullet && livingEnemies.length > 0)
   {
+      enemyBullet.width = 35;
+      enemyBullet.height = 35;
 
       var random=game.rnd.integerInRange(0,livingEnemies.length-1);
 
@@ -261,6 +267,8 @@ function fireBullet () {
   {
       //  Grab the first bullet we can from the pool
       bullet = bullets.getFirstExists(false);
+      bullet.width = 35;
+      bullet.height = 35;
 
       if (bullet)
       {
