@@ -25,28 +25,28 @@ $screen-background:#121010;
 }
 
 body {
-  background-color: #333;
-  @media screen and (min-width: $large) {
-    background: radial-gradient(circle, #333, black);
-  }
+  background: #333;
+  background: radial-gradient(circle, #666, black);
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .outer-arcade {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 900px;
+  max-width: 720px;
   background: black;
   transition: 0.5s all;
   margin: 0 auto;
-  border-left: 1em solid white;
-  border-right: 1em solid white;
   border-radius: 0.5em 0.5em 0 0;
   @media screen and (max-width: $mobile - 1) {
     padding: 0;
     transition: 0.5s all;
   }
-  @media screen and (min-width: $large) {
+  @media screen and (min-width: $mobile) {
+    border-left: 1em solid white;
+    border-right: 1em solid white;
     margin-top: 3em;
   }
 }
@@ -57,12 +57,16 @@ body {
   flex-direction: column;
   background: black;
   background: radial-gradient(circle, black, #333);
-  border-radius: 4em;
-  transform: perspective(500px) rotateX(4deg) scale(0.89);
   transform-origin: top;
-  margin: 3em 1.5em 1.5em;
-  min-height: 700px;
+  min-height: 560px;
   box-shadow: inset 0 0 10px 0 grey;
+  border-radius: 2em;
+  margin: 1em;
+  @media screen and (min-width: $mobile) {
+    border-radius: 4em;
+    margin: 2em 1em -1em;
+    transform: perspective(500px) rotateX(4deg) scale(0.89);
+  }
 }
 
 .screen {
@@ -71,7 +75,7 @@ body {
   flex-direction: column;
   font-family: "Arcade";
   padding: 2em;
-  margin: 3em;
+  margin: 1.5em;
   box-shadow: inset 0 0 15px 0 white;
   overflow: hidden;
 
@@ -81,6 +85,10 @@ body {
   animation: turn-on 4s linear, bgscreen 10s infinite linear;
   animation-fill-mode: forwards;
   animation-play-state: running;
+
+  @media screen and (min-width: $mobile) {
+    margin: 2.5em;
+  }
 
   &:after{
     content: " ";
@@ -142,9 +150,9 @@ body {
     background: green;
     border: 3px solid yellow;
     margin: 1%;
-    font-size: 1.2em;
+    font-size: 0.9em;
     text-align: center;
-    padding: 1em;
+    padding: 0.9em;
     flex-direction: column;
     cursor: pointer;
     flex-grow: 1;
@@ -211,20 +219,22 @@ body {
 }
 
 .arcade-header {
-  font-size: 4em;
+  font-size: 2.5em;
   font-family: "Lemon/Milk";
   background: goldenrod;
   color: white;
-  height: 150px;
+  height: 120px;
   box-shadow: inset 0 0px 4px 0 black;
   text-shadow: 0 2px 2px black;
   padding: 0 0.3em;
   margin-top: -10px;
   transition: 0.5s all;
-  transform: perspective(500px) rotateX(2deg) scale(1.1);
   border-left: 15px solid white;
   border-right: 15px solid white;
   border-radius: 5px;
+  @media screen and (min-width: $mobile) {
+    transform: perspective(500px) rotateX(2deg) scale(1.1);
+  }
   span {
     display: flex;
     flex: 1;
@@ -240,11 +250,11 @@ body {
     }
   }
   i {
-    font-size: 0.5em;
+    font-size: 0.7em;
     margin: 25px;
   }
   @media screen and (max-width: $mobile - 1) {
-    font-size: 4em;
+    font-size: 2em;
   }
   .left-group, .right-group {
     display: flex;
@@ -271,13 +281,15 @@ body {
   height: 100px;
   color: white;
   font-size: 1.2em;
-  border: 15px solid white;
-  border-top: 0;
   font-family: "Lemon/Milk";
-  transform: perspective(500px) rotateX(30deg) scale(1.1);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
   z-index: 1;
+  @media screen and (min-width: $mobile) {
+    border: 15px solid white;
+    border-top: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: perspective(500px) rotateX(30deg) scale(1.11);
+  }
   a {
     color: white;
     margin: 0 0.5em;
@@ -302,7 +314,11 @@ body {
   height: 200px;
   transition: 0.5s all;
   box-shadow: inset 0 5px 10px 2px #333;
-  transform: scale(1.1);
-  border-left: 15px solid white;
-  border-right: 15px solid white;
+  @media screen and (min-width: $mobile) {
+    transform: scale(1.17);
+    border-left: 15px solid white;
+    border-right: 15px solid white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 }
