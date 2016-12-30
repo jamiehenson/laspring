@@ -35,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1100px;
+  max-width: 900px;
   background: black;
   transition: 0.5s all;
   margin: 0 auto;
@@ -60,8 +60,8 @@ body {
   border-radius: 4em;
   transform: perspective(500px) rotateX(4deg) scale(0.89);
   transform-origin: top;
-  margin: 4em 2em 2em;
-  min-height: 800px;
+  margin: 3em 1.5em 1.5em;
+  min-height: 700px;
   box-shadow: inset 0 0 10px 0 grey;
 }
 
@@ -117,13 +117,13 @@ body {
   }
 
   .overlay {
-    color:#00FF00;
-    position:absolute;
+    color: #00FF00;
+    position: absolute;
     top: 20px;
     left: 20px;
-    font-size:60px;
+    font-size: 3em;
     visibility:hidden;
-    pointer-events:none;
+    pointer-events: none;
     animation: overlay-anim 5s linear;
   }
 }
@@ -142,7 +142,7 @@ body {
     background: green;
     border: 3px solid yellow;
     margin: 1%;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: center;
     padding: 1em;
     flex-direction: column;
@@ -162,7 +162,7 @@ body {
     justify-content: flex-end;
   }
   .fa-lock, .fa-unlock {
-    font-size: 5em;
+    font-size: 4em;
   }
 }
 
@@ -211,7 +211,7 @@ body {
 }
 
 .arcade-header {
-  font-size: 5em;
+  font-size: 4em;
   font-family: "Lemon/Milk";
   background: goldenrod;
   color: white;
@@ -270,14 +270,14 @@ body {
 .arcade-drawer {
   height: 100px;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border: 15px solid white;
-  border-top: 4px solid white;
-  box-shadow: 0 0 1px 1px black;
+  border-top: 0;
   font-family: "Lemon/Milk";
-  transform: perspective(500px) rotateX(30deg) scale(1.09);
+  transform: perspective(500px) rotateX(30deg) scale(1.1);
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  z-index: 1;
   a {
     color: white;
     margin: 0 0.5em;
@@ -293,13 +293,13 @@ body {
       text-decoration: none;
       box-shadow: inset 0 0 3px 1px black;
       transition: 0.3s all;
-      transform: scale(0.97);
+      transform: scale(0.99);
     }
   }
 }
 
 .arcade-padder {
-  height: 300px;
+  height: 200px;
   transition: 0.5s all;
   box-shadow: inset 0 5px 10px 2px #333;
   transform: scale(1.1);
