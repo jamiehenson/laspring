@@ -1,6 +1,3 @@
----
----
-
 $ ->
   color = '#'
   color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)] for i in [1..6]

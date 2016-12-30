@@ -1,6 +1,3 @@
----
----
-
 $ ->
   if document.location.pathname != "/"
     $(".site-link").removeClass "current"
