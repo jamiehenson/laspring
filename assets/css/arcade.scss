@@ -6,9 +6,9 @@
 $large: 1200px;
 $mobile: 768px;
 
-$ease-out-quint:cubic-bezier(0.230, 1.000, 0.320, 1.000);
-$ease-in-quint:cubic-bezier(0.755, 0.050, 0.855, 0.060);
-$screen-background:#121010;
+$ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+$screen-background: #121010;
 
 @font-face {
   font-family: 'Lemon/Milk';
@@ -62,6 +62,7 @@ body {
   box-shadow: inset 0 0 10px 0 grey;
   border-radius: 2em;
   margin: 1em;
+  transition: 0.5s all;
   @media screen and (min-width: $mobile) {
     border-radius: 4em;
     margin: 2em 1em -1em;
@@ -78,6 +79,7 @@ body {
   margin: 1.5em;
   box-shadow: inset 0 0 15px 0 white;
   overflow: hidden;
+  transition: 0.5s all;
 
   transform: scale(0.000,0.0001) translate3d(0,0,0);
   filter: brightness(50);
@@ -90,7 +92,7 @@ body {
     margin: 2.5em;
   }
 
-  &:after{
+  &:after {
     content: " ";
     display: block;
     position: absolute;
@@ -106,7 +108,7 @@ body {
     transition: 0.5s all;
   }
 
-  &:before{
+  &:before {
     content: " ";
     display: block;
     position: absolute;
@@ -116,7 +118,7 @@ body {
     right: 0;
     background: linear-gradient(transparentize($screen-background,1) 50%, transparentize(darken($screen-background,10),0.75) 50%), linear-gradient(90deg,transparentize(red,0.94),transparentize(green,0.98),transparentize(blue,0.94));
     z-index: 2;
-    background-size: 100% 3px, 3px 100%;
+    background-size: 100% 4px, 3px 100%;
     pointer-events: none;
   }
 
@@ -221,7 +223,8 @@ body {
 .arcade-header {
   font-size: 2.5em;
   font-family: "Lemon/Milk";
-  background: goldenrod;
+  background-color: goldenrod;
+  background-image: url('../images/noise.png');
   color: white;
   height: 120px;
   box-shadow: inset 0 0px 4px 0 black;
@@ -280,9 +283,10 @@ body {
 .arcade-drawer {
   height: 100px;
   color: white;
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: "Lemon/Milk";
   z-index: 1;
+  box-shadow: inset 0 0 15px 2px black;
   @media screen and (min-width: $mobile) {
     border: 15px solid white;
     border-top: 0;
@@ -297,7 +301,7 @@ body {
     border-radius: 1em;
     text-shadow: 0 2px 2px black;
     border: 2px solid white;
-    width: 200px;
+    width: 150px;
     text-align: center;
     transition: 0.5s all;
     text-decoration: none;
@@ -313,7 +317,7 @@ body {
 .arcade-padder {
   height: 200px;
   transition: 0.5s all;
-  box-shadow: inset 0 5px 10px 2px #333;
+  box-shadow: inset 0 0px 15px 5px black;
   @media screen and (min-width: $mobile) {
     transform: scale(1.17);
     border-left: 15px solid white;
