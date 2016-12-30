@@ -8,18 +8,20 @@ $ ->
 
   $(".arcade-header").css("background-color", color)
   $(".arcade-drawer a").css("background-color", color)
-  $(".arcade-padder").css("background-color", color)
   $(".arcade-drawer").addClass(surfaces[Math.floor(Math.random() * surfaces.length)])
 
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
-    $(".game-menu").hide()
-    $(".game-frame.game-one").show() if $(this).hasClass("game-one")
-    $(".game-frame.game-two").show() if $(this).hasClass("game-two")
-    $(".game-frame.game-three").show() if $(this).hasClass("game-three")
-    $(".game-frame.game-four").show() if $(this).hasClass("game-four")
+    $(".game-menu").addClass("off")
+    $(".screen").addClass("off")
+    $(".game-frame.game-one").css("display", "flex") if $(this).hasClass("game-one")
+    $(".game-frame.game-two").css("display", "flex") if $(this).hasClass("game-two")
+    $(".game-frame.game-three").css("display", "flex") if $(this).hasClass("game-three")
+    $(".game-frame.game-four").css("display", "flex") if $(this).hasClass("game-four")
 
   $(".back").click ->
     $(".game-menu").css("display", "flex")
     $(".game-frame").hide()
     $(".game-view").hide()
+    $(".game-menu").removeClass("off")
+    $(".screen").removeClass("off")

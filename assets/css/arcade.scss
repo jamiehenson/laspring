@@ -1,5 +1,7 @@
 ---
 ---
+@import "arcade/surfaces";
+@import "arcade/animations";
 
 $large: 1200px;
 $mobile: 768px;
@@ -71,17 +73,19 @@ body {
   padding: 2em;
   margin: 3em;
   box-shadow: inset 0 0 15px 0 white;
+  overflow: hidden;
 
   transform: scale(0.000,0.0001) translate3d(0,0,0);
   filter: brightness(50);
 
   animation: turn-on 4s linear, bgscreen 10s infinite linear;
   animation-fill-mode: forwards;
+  animation-play-state: running;
 
   &:after{
     content: " ";
-    display:block;
-    position:absolute;
+    display: block;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -102,10 +106,14 @@ body {
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(transparentize($screen-background,1) 50%, transparentize(darken($screen-background,10),0.75) 50%), linear-gradient(90deg,transparentize(#ff0000,0.94),transparentize(#00ff00,0.98),transparentize(#0000ff,0.94));
+    background: linear-gradient(transparentize($screen-background,1) 50%, transparentize(darken($screen-background,10),0.75) 50%), linear-gradient(90deg,transparentize(red,0.94),transparentize(green,0.98),transparentize(blue,0.94));
     z-index: 2;
-    background-size: 100% 2px, 3px 100%;
+    background-size: 100% 3px, 3px 100%;
     pointer-events: none;
+  }
+
+  &.off {
+    animation-play-state: paused;
   }
 
   .overlay {
@@ -124,6 +132,9 @@ body {
   display: flex;
   flex-flow: row wrap;
   flex-grow: 1;
+  &.off {
+    display: none !important;
+  }
   .game-icon {
     display: flex;
     justify-content: center;
@@ -137,6 +148,10 @@ body {
     flex-direction: column;
     cursor: pointer;
     flex-grow: 1;
+    transform: rotate(0deg);
+    &:hover {
+      animation: 3s shimmer infinite linear;
+    }
   }
   .game-name {
     flex: 1;
@@ -160,6 +175,7 @@ body {
   color: white;
   .game-frame {
     display: none;
+    flex-direction: column;
   }
   .header, .game, .footer {
     display: flex;
@@ -168,12 +184,13 @@ body {
     justify-content: center;
   }
   .header {
-    font-size: 4em;
+    font-size: 3em;
+    text-align: center;
   }
   .game {
     height: 100%;
     img {
-      max-width: 50%;
+      max-width: 300px;
       margin: 1em;
       border-radius: 10%;
       animation: 3s spinner infinite linear;
@@ -251,16 +268,14 @@ body {
 }
 
 .arcade-drawer {
-  width: 100%;
-  background:#333;
   height: 100px;
   color: white;
   font-size: 1.5em;
-  border-top: 8px solid white;
-  border-bottom: 8px solid white;
+  border: 15px solid white;
+  border-top: 4px solid white;
   box-shadow: 0 0 1px 1px black;
   font-family: "Lemon/Milk";
-  transform: perspective(500px) rotateX(20deg) scale(1.07);
+  transform: perspective(500px) rotateX(30deg) scale(1.09);
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   a {
@@ -284,91 +299,10 @@ body {
 }
 
 .arcade-padder {
-  width: 100%;
   height: 300px;
-  background: goldenrod;
   transition: 0.5s all;
   box-shadow: inset 0 5px 10px 2px #333;
   transform: scale(1.1);
-}
-
-@keyframes bgscreen {
-  0% {
-    background-color: red;
-  }
-  25% {
-    background-color: purple;
-  }
-  50% {
-    background-color: darkblue;
-  }
-  75% {
-    background-color: purple;
-  }
-  100% {
-    background-color: red;
-  }
-}
-
-@keyframes flicker {
-  $steps: 20;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      opacity: random();
-    }
-  }
-}
-
-@keyframes turn-on {
-  0% {
-    transform: scale(1,0.8) translate3d(0,0,0);
-    filter: brightness(30);
-    opacity: 1;
-  }
-  3.5% {
-    transform: scale(1,0.8) translate3d(0,100%,0);
-  }
-  3.6% {
-    transform: scale(1,0.8) translate3d(0,-100%,0);
-    opacity: 1;
-  }
-  9% {
-    transform: scale(1.3,0.6) translate3d(0,100%,0);
-    filter: brightness(30);
-    opacity: 0;
-  }
-  11% {
-    transform: scale(1,1) translate3d(0,0,0);
-    filter: contrast(0) brightness(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1,1) translate3d(0,0,0);
-    filter: contrast(1) brightness(1.2) saturate(1.3);
-    opacity: 1;
-  }
-}
-
-@keyframes overlay-anim {
-  0% {
-    visibility: hidden;
-  }
-  20% {
-    visibility: hidden;
-  }
-  21% {
-    visibility: visible;
-  }
-  100% {
-    visibility: hidden;
-  }
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  border-left: 15px solid white;
+  border-right: 15px solid white;
 }
