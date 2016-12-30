@@ -27,6 +27,11 @@ $screen-background: #121010;
 body {
   background: #333;
   background: radial-gradient(circle, #666, black);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -47,7 +52,6 @@ body {
   @media screen and (min-width: $mobile) {
     border-left: 1em solid white;
     border-right: 1em solid white;
-    margin-top: 3em;
   }
 }
 
@@ -322,7 +326,21 @@ body {
     transform: scale(1.17);
     border-left: 15px solid white;
     border-right: 15px solid white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
+  }
+  .credz {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #444;
+    font-family: "Lemon/Milk";
+    letter-spacing: 5px;
+    text-shadow: 1px 1px 1px black;
+    padding: 0.5em;
+    transition: 0.5s all;
+    &:hover {
+      color: #666;
+      transition: 0.5s all;
+    }
   }
 }
