@@ -13,7 +13,6 @@ $ ->
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
     $(".game-menu").addClass("off")
-    $(".screen").addClass("off")
     $(".game-frame.game-one").css("display", "flex") if $(this).hasClass("game-one")
     $(".game-frame.game-two").css("display", "flex") if $(this).hasClass("game-two")
     $(".game-frame.game-three").css("display", "flex") if $(this).hasClass("game-three")

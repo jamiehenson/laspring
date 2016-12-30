@@ -70,7 +70,7 @@ body {
   @media screen and (min-width: $mobile) {
     border-radius: 4em;
     margin: 2em 1em -1em;
-    transform: perspective(500px) rotateX(4deg) scale(0.89);
+    transform: perspective(500px) rotateX(7deg) scale(0.85);
   }
 }
 
@@ -79,7 +79,6 @@ body {
   flex: 1;
   flex-direction: column;
   font-family: "Arcade";
-  padding: 2em;
   margin: 1.5em;
   box-shadow: inset 0 0 15px 0 white;
   overflow: hidden;
@@ -88,9 +87,8 @@ body {
   transform: scale(0.000,0.0001) translate3d(0,0,0);
   filter: brightness(50);
 
-  animation: turn-on 4s linear, bgscreen 10s infinite linear;
+  animation: turn-on 4s linear;
   animation-fill-mode: forwards;
-  animation-play-state: running;
 
   @media screen and (min-width: $mobile) {
     margin: 2.5em;
@@ -126,10 +124,6 @@ body {
     pointer-events: none;
   }
 
-  &.off {
-    animation-play-state: paused;
-  }
-
   .overlay {
     color: #00FF00;
     position: absolute;
@@ -146,8 +140,12 @@ body {
   display: flex;
   flex-flow: row wrap;
   flex-grow: 1;
+  padding: 2em;
+  animation: bgscreen 10s infinite linear;
+  animation-play-state: running;
   &.off {
     display: none !important;
+    animation-play-state: paused;
   }
   .game-icon {
     display: flex;
@@ -273,7 +271,6 @@ body {
 }
 
 .arcade-player {
-  margin: 0 0.5em;
   span {
     width: 100%;
     padding: 0.5em;
@@ -343,4 +340,8 @@ body {
       transition: 0.5s all;
     }
   }
+}
+
+#spice-invaders {
+  transform: scale(0.7);
 }

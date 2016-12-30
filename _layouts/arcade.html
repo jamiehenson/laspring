@@ -14,6 +14,7 @@
     <link href="/assets/css/arcade.css?body=1" media="all" rel="stylesheet" type="text/css"></link>
     <link href="/assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
     <link href="/assets/images/favicon.ico" rel="icon" type="image/x-icon"></link>
+    <script src="/assets/js/phaser.min.js"></script>
   </head>
   <body>
 
@@ -87,12 +88,11 @@
               </div>
             </div>
             <div class="game-frame game-two">
+              <script src="/assets/js/games/invaders.js"></script>
               <div class="header">
                 <span>SPICE INVADERS</span>
               </div>
-              <div class="game">
-                <img src="http://orig12.deviantart.net/6fdf/f/2014/117/9/2/ainsley_harriot_head_by_lacorocks-d7gacxq.png"></img>
-              </div>
+              <div id="spice-invaders" class="game"></div>
               <div class="footer">
                 <p class="back">Back</p>
               </div>
@@ -139,6 +139,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/assets/js/arcade.js"></script>
+
+    </script>
     <script>
       (function() {
         var css = document.createElement('link');
