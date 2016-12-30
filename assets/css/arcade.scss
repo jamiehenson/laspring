@@ -280,6 +280,9 @@ body {
   }
   @media screen and (max-width: $mobile - 1) {
     font-size: 2em;
+    i {
+      margin: 15px;
+    }
   }
   .left-group, .right-group {
     display: flex;
