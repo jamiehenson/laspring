@@ -1,6 +1,6 @@
 var worldX = 500;
 var worldY = 360;
-var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'pass-er-by', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
   game.load.image('bullet', 'assets/images/games/spice/icecream.png');

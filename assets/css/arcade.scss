@@ -1,3 +1,6 @@
+---
+---
+
 @import "arcade/surfaces";
 @import "arcade/animations";
 
@@ -271,7 +274,7 @@ body {
   }
   i {
     font-size: 0.7em;
-    margin: 25px;
+    margin: 15px 25px;
   }
   @media screen and (max-width: $mobile - 1) {
     font-size: 2em;
@@ -282,6 +285,23 @@ body {
   }
   .right-group {
     justify-content: flex-end;
+  }
+  .colour-shuffle {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+    &:hover {
+      i {
+        color: red;
+        transition: 0.5s all;
+      }
+    }
+    i {
+      font-size: 0.35em;
+      margin: 5px;
+      transition: 0.5s all;
+    }
   }
 }
 
@@ -303,6 +323,7 @@ body {
   font-family: "Lemon/Milk";
   z-index: 1;
   box-shadow: inset 0 0 15px 2px black;
+  transition: 0.5s all;
   @media screen and (min-width: $mobile) {
     border: 15px solid white;
     border-top: 0;

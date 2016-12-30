@@ -1,11 +1,18 @@
-$ ->
-  color = '#'
-  color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)] for i in [1..6]
-  surfaces = ['carbon', 'cube', 'posh', 'rhombus', 'stars', 'zigzag']
+---
+---
 
-  $(".arcade-header").css("background-color", color)
-  $(".arcade-drawer a").css("background-color", color)
-  $(".arcade-drawer").addClass(surfaces[Math.floor(Math.random() * surfaces.length)])
+$ ->
+  surfaces = ['arrows', 'carbon', 'cube', 'honeycomb', 'marrakech', 'posh', 'rhombus', 'stars', 'zigzag']
+
+  generateColour = ->
+    colour = '#'
+    colour += '0123456789ABCDEF'[Math.floor(Math.random() * 16)] for i in [1..6]
+    $(".arcade-header").css("background-color", colour)
+    $(".arcade-drawer a").css("background-color", colour)
+    $(".arcade-drawer").removeClass(surface) for surface in surfaces
+    $(".arcade-drawer").addClass(surfaces[Math.floor(Math.random() * surfaces.length)])
+
+  generateColour()
 
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
@@ -19,3 +26,6 @@ $ ->
     $(".game-view").hide()
     $(".game-menu").removeClass("off")
     $(".screen").removeClass("off")
+
+  $(".colour-shuffle").click ->
+    generateColour()
