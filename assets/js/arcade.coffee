@@ -4,10 +4,12 @@
 $ ->
   color = '#'
   color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)] for i in [1..6]
+  surfaces = ['carbon', 'cube', 'posh', 'rhombus', 'stars', 'zigzag']
 
   $(".arcade-header").css("background-color", color)
   $(".arcade-drawer a").css("background-color", color)
   $(".arcade-padder").css("background-color", color)
+  $(".arcade-drawer").addClass(surfaces[Math.floor(Math.random() * surfaces.length)])
 
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
@@ -16,8 +18,6 @@ $ ->
     $(".game-frame.game-two").show() if $(this).hasClass("game-two")
     $(".game-frame.game-three").show() if $(this).hasClass("game-three")
     $(".game-frame.game-four").show() if $(this).hasClass("game-four")
-    $(".game-frame.game-five").show() if $(this).hasClass("game-five")
-    $(".game-frame.game-six").show() if $(this).hasClass("game-six")
 
   $(".back").click ->
     $(".game-menu").css("display", "flex")

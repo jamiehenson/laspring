@@ -55,10 +55,10 @@ body {
   flex-direction: column;
   background: black;
   background: radial-gradient(circle, black, #333);
-  border-radius: 0.5em;
+  border-radius: 4em;
   transform: perspective(500px) rotateX(4deg) scale(0.89);
   transform-origin: top;
-  margin: 0.75em;
+  margin: 4em 2em 2em;
   min-height: 800px;
   box-shadow: inset 0 0 10px 0 grey;
 }
@@ -68,9 +68,8 @@ body {
   flex: 1;
   flex-direction: column;
   font-family: "Arcade";
-  border-radius: 4em;
   padding: 2em;
-  margin: 2em;
+  margin: 3em;
   box-shadow: inset 0 0 15px 0 white;
 
   transform: scale(0.000,0.0001) translate3d(0,0,0);
@@ -129,15 +128,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
     background: green;
     border: 3px solid yellow;
-    margin: 1.66%;
+    margin: 1%;
     font-size: 1.5em;
     text-align: center;
     padding: 1em;
     flex-direction: column;
     cursor: pointer;
+    flex-grow: 1;
   }
   .game-name {
     flex: 1;
@@ -205,6 +204,10 @@ body {
   padding: 0 0.3em;
   margin-top: -10px;
   transition: 0.5s all;
+  transform: perspective(500px) rotateX(2deg) scale(1.1);
+  border-left: 15px solid white;
+  border-right: 15px solid white;
+  border-radius: 5px;
   span {
     display: flex;
     flex: 1;
@@ -257,6 +260,9 @@ body {
   border-bottom: 8px solid white;
   box-shadow: 0 0 1px 1px black;
   font-family: "Lemon/Milk";
+  transform: perspective(500px) rotateX(20deg) scale(1.07);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   a {
     color: white;
     margin: 0 0.5em;
@@ -267,6 +273,7 @@ body {
     width: 200px;
     text-align: center;
     transition: 0.5s all;
+    text-decoration: none;
     &:hover {
       text-decoration: none;
       box-shadow: inset 0 0 3px 1px black;
@@ -276,16 +283,13 @@ body {
   }
 }
 
-.arcade-wrapper {
-  background: black;
-}
-
 .arcade-padder {
   width: 100%;
   height: 300px;
   background: goldenrod;
   transition: 0.5s all;
   box-shadow: inset 0 5px 10px 2px #333;
+  transform: scale(1.1);
 }
 
 @keyframes bgscreen {
