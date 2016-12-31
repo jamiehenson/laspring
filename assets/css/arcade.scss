@@ -15,14 +15,15 @@ $screen-background: #121010;
   font-family: 'Lemon/Milk';
   src:
     local('Lemon/Milk'),
-    url('../fonts/lemon.otf') format('otf');
+    url('../fonts/lemon.otf') format('otf'),
+    url('../fonts/lemon.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Arcade';
   src:
     local('Arcade Normal'),
-    url('../fonts/arcade.ttf') format('ttf');
+    url('../fonts/arcade.ttf') format('truetype');
 }
 
 body {
@@ -349,6 +350,9 @@ body {
 }
 
 .arcade-padder {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
   height: 100px;
   transition: 0.5s all;
   box-shadow: inset 0 0px 15px 5px black;
@@ -359,15 +363,15 @@ body {
     border-right: 15px solid white;
     border-radius: 10px;
   }
+  a {
+    padding: 0.5em;
+    text-decoration: none;
+  }
   .credz {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     color: #444;
     font-family: "Lemon/Milk";
     letter-spacing: 5px;
     text-shadow: 1px 1px 1px black;
-    padding: 0.5em;
     transition: 0.5s all;
     &:hover {
       color: #666;
