@@ -1,5 +1,5 @@
 var worldX = 590;
-var worldY = 360;
+var worldY = 350;
 var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders');
 var imp, filter;
 
