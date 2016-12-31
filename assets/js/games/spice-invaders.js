@@ -12,29 +12,29 @@ var menuState = {
   },
 
   create: function() {
+    filter = game.add.filter('Fire', worldX, worldY);
+    filter.setResolution(worldX, worldY);
+
+    background = game.add.sprite(0, 0);
+    background.width = worldX;
+    background.height = worldY;
+
+    background.filters = [filter];
+
     imp = game.add.image(game.world.centerX, game.world.centerY, 'imp')
-    var icon = game.add.image(game.world.centerX, game.world.centerY, 'chili');
     var title = game.add.image(game.world.centerX, 10, 'spice-title');
     var desc = game.add.text(game.world.centerX, game.world.height - 10, "It's time to cool down. Tap on the edges to move left and right, and in the middle to fire!",
       {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: game.world.width, align: "center"}
     );
 
     imp.anchor.set(0.5);
+    imp.width = 200;
+    imp.height = 200;
     title.anchor.set(0.5, 0);
     desc.anchor.set(0.5, 1);
-    icon.anchor.set(0.5);
 
     desc.stroke = 'black';
     desc.strokeThickness = 7;
-
-    background = game.add.sprite(0, 0);
-    background.width = worldX;
-    background.height = worldY;
-
-    filter = game.add.filter('Fire', worldX, worldY);
-    filter.alpha = 0.0;
-
-    background.filters = [filter];
 
     game.input.onTap.addOnce(this.start, this);
   },
