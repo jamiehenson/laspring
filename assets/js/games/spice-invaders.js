@@ -1,4 +1,4 @@
-var worldX = 500;
+var worldX = 590;
 var worldY = 360;
 var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders');
 
@@ -25,9 +25,17 @@ var player, aliens, bullets, bulletTime = 0, cursors, fireButton, explosions, ba
 
 var playState = {
   preload: function() {
-    game.load.image('bullet', 'assets/images/games/spice/icecream.png');
+    game.load.image('icecream', 'assets/images/games/spice/icecream.png');
+    game.load.image('icecream2', 'assets/images/games/spice/icecream2.png');
+    game.load.image('cone', 'assets/images/games/spice/cone.png');
+    game.load.image('milk', 'assets/images/games/spice/milk.png');
+    game.load.image('baby', 'assets/images/games/spice/baby.png');
     game.load.image('enemyBullet', 'assets/images/games/spice/fire.png');
-    game.load.image('invader', 'assets/images/games/spice/chili.png', 30, 30);
+    game.load.image('chili', 'assets/images/games/spice/chili.png', 30, 30);
+    game.load.image('burrito', 'assets/images/games/spice/burrito.png', 30, 30);
+    game.load.image('taco', 'assets/images/games/spice/taco.png', 30, 30);
+    game.load.image('curry', 'assets/images/games/spice/curry.png', 30, 30);
+    game.load.image('chicken', 'assets/images/games/spice/chicken.png', 30, 30);
     game.load.image('ship', 'assets/images/games/spice/hand.png');
     game.load.image('background', 'assets/images/games/spice/floor.jpg');
     game.load.image('kaboom', 'assets/images/games/spice/water.png', 128, 128);
@@ -42,7 +50,11 @@ var playState = {
     bullets = game.add.group();
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
-    bullets.createMultiple(30, 'bullet');
+
+    for (var i = 0; i < 30; i++) {
+      bullets.create(0, 0, ['icecream', 'icecream2', 'cone', 'baby', 'milk'][Math.floor(Math.random() * 5)], 0, false);
+    }
+
     bullets.setAll('anchor.x', 0.5);
     bullets.setAll('anchor.y', 1);
     bullets.setAll('outOfBoundsKill', true);
@@ -67,9 +79,9 @@ var playState = {
     aliens.enableBody = true;
     aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
-    this.createAliens();
+    this.createEnemies();
 
-    scoreString = 'Score : ';
+    scoreString = 'Score: ';
     scoreText = game.add.text(10, 10, scoreString + score, { font: '20px arcade', fill: 'yellow' });
 
     lives = game.add.group();
@@ -96,10 +108,10 @@ var playState = {
     fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   },
 
-  createAliens: function() {
+  createEnemies: function() {
     for (var y = 0; y < 4; y++) {
       for (var x = 0; x < 10; x++) {
-        var alien = aliens.create(x * 40, y * 35, 'invader');
+        var alien = aliens.create(x * 40, y * 35, ['taco', 'burrito', 'chili', 'curry', 'chicken'][Math.floor(Math.random() * 5)]);
         alien.anchor.setTo(0.5, 0.5);
         alien.width = 25;
         alien.height = 25;
@@ -107,12 +119,12 @@ var playState = {
       }
     }
 
-    aliens.x = 10;
+    aliens.x = 20;
     aliens.y = 50;
 
-    var tween = game.add.tween(aliens).to( { x: 160 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    var tween = game.add.tween(aliens).to( { x: 210 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
-    tween.onLoop.add(this.descend, this);
+    tween.onRepeat.add(this.descend, this);
   },
 
   setupInvader: function(invader) {
@@ -130,6 +142,10 @@ var playState = {
 
     if (player.alive) {
       player.body.velocity.setTo(0, 0);
+
+      livingEnemies.forEach(function(enemy){
+        enemy.angle += 1;
+      });
 
       isLeft = game.input.activePointer.isDown && (game.input.x < game.world.width * 0.25);
       isRight = game.input.activePointer.isDown && (game.input.x > game.world.width * 0.75);
@@ -246,7 +262,8 @@ var playState = {
   restart: function() {
     lives.callAll('revive');
     aliens.removeAll();
-    this.createAliens();
+    game.tweens.removeAll();
+    this.createEnemies();
 
     player.revive();
     stateText.visible = false;
