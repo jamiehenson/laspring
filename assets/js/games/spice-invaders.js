@@ -1,16 +1,49 @@
 var worldX = 590;
 var worldY = 360;
 var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders');
+var imp, filter;
 
 var menuState = {
+
   preload: function() {
+    game.load.image('spice-title', "assets/images/games/spice/spice-title.png");
     game.load.image('button', "assets/images/games/spice/fire.png");
+    game.load.image('imp', "assets/images/games/spice/imp.png");
+    game.load.image('chili', 'assets/images/games/spice/chili-med.png');
+    game.load.script('filter', 'assets/js/games/fire-filter.js');
   },
 
   create: function() {
-    game.add.text(50, 50, "Spice Invaders", {font: "30px Arcade", fill: "white"});
-    game.add.text(50, 100, "Tap <- to move left, -> to move right, and X to fire!", {font: "12px Arcade", fill: "white"});
-    game.add.button(game.world.centerX - 50, 200, 'button', this.start, this, 2, 1, 0);
+    imp = game.add.image(game.world.centerX, game.world.centerY, 'imp')
+    var icon = game.add.image(game.world.centerX, game.world.centerY, 'chili');
+    var title = game.add.image(game.world.centerX, 10, 'spice-title');
+    var desc = game.add.text(game.world.centerX, game.world.height - 10, "It's time to cool down. Tap on the edges to move left and right, and in the middle to fire!",
+      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: game.world.width, align: "center"}
+    );
+
+    imp.anchor.set(0.5);
+    title.anchor.set(0.5, 0);
+    desc.anchor.set(0.5, 1);
+    icon.anchor.set(0.5);
+
+    desc.stroke = 'black';
+    desc.strokeThickness = 7;
+
+    background = game.add.sprite(0, 0);
+    background.width = 800;
+    background.height = 600;
+
+    filter = game.add.filter('Fire', worldX, worldY);
+    filter.alpha = 0.0;
+
+    background.filters = [filter];
+
+    game.input.onTap.addOnce(this.start, this);
+  },
+
+  update: function() {
+    imp.angle += 1;
+    filter.update();
   },
 
   start: function() {
@@ -80,12 +113,12 @@ var playState = {
     this.createEnemies();
 
     scoreString = 'Score: ';
-    scoreText = game.add.text(10, 10, scoreString + score, { font: '20px arcade', fill: 'yellow' });
+    scoreText = game.add.text(10, 10, scoreString + score, { font: '20px Arcade', fill: 'yellow' });
 
     lives = game.add.group();
-    game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px arcade', fill: 'yellow' });
+    game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px Arcade', fill: 'yellow' });
 
-    stateText = game.add.text(game.world.centerX, game.world.centerY,' ', { font: '20px arcade', fill: 'yellow' });
+    stateText = game.add.text(game.world.centerX, game.world.centerY,' ', { font: '20px Arcade', fill: 'yellow' });
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
 
@@ -136,10 +169,6 @@ var playState = {
   },
 
   update: function() {
-    if (!window.ongoingGame) {
-      game.state.start('menu')
-    }
-
     background.tilePosition.y += 1;
 
     if (player.alive) {

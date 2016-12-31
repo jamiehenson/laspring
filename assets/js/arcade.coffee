@@ -19,15 +19,14 @@ $ ->
     $(".game-menu").addClass("off")
     $(".game-frame.game-one").css("display", "flex") if $(this).hasClass("game-one")
     $(".game-frame.game-two").css("display", "flex") if $(this).hasClass("game-two")
-    window.ongoingGame = true;
 
   $(".back").click ->
+    game.state.start('menu') for game in Phaser.GAMES
     $(".game-menu").css("display", "flex")
     $(".game-frame").hide()
     $(".game-view").hide()
     $(".game-menu").removeClass("off")
     $(".screen").removeClass("off")
-    window.ongoingGame = false;
 
   $(".colour-shuffle").click ->
     generateColour()
