@@ -5,12 +5,11 @@ var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders');
 var menuState = {
   preload: function() {
     game.load.image('button', "assets/images/games/spice/fire.png");
-    game.load.bitmapFont('arcade', 'assets/fonts/arcade.png');
   },
 
   create: function() {
-    game.add.text(50, 50, "Spice Invaders", {font: "30px arcade", fill: "white"});
-    game.add.text(50, 100, "Tap <- to move left, -> to move right, and X to fire!", {font: "12px arcade", fill: "white"});
+    game.add.text(50, 50, "Spice Invaders", {font: "30px Arcade", fill: "white"});
+    game.add.text(50, 100, "Tap <- to move left, -> to move right, and X to fire!", {font: "12px Arcade", fill: "white"});
     game.add.button(game.world.centerX - 50, 200, 'button', this.start, this, 2, 1, 0);
   },
 
@@ -39,7 +38,6 @@ var playState = {
     game.load.image('ship', 'assets/images/games/spice/hand.png');
     game.load.image('background', 'assets/images/games/spice/floor.jpg');
     game.load.image('kaboom', 'assets/images/games/spice/water.png', 128, 128);
-    game.load.bitmapFont('arcade', 'assets/fonts/arcade.png');
   },
 
   create: function() {
@@ -138,6 +136,10 @@ var playState = {
   },
 
   update: function() {
+    if (!window.ongoingGame) {
+      game.state.start('menu')
+    }
+
     background.tilePosition.y += 1;
 
     if (player.alive) {
