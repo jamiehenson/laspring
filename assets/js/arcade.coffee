@@ -8,7 +8,7 @@ $ ->
     colour = '#'
     colour += '0123456789ABCDEF'[Math.floor(Math.random() * 16)] for i in [1..6]
     $(".arcade-header").css("background-color", colour)
-    $(".arcade-drawer a").css("background-color", colour)
+    $(".arcade-drawer span").css("background-color", colour)
     $(".arcade-drawer").removeClass(surface) for surface in surfaces
     $(".arcade-drawer").addClass(surfaces[Math.floor(Math.random() * surfaces.length)])
 
