@@ -1,7 +1,5 @@
-var worldX = 590;
-var worldY = 350;
 var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders');
-var imp, filter;
+var imp;
 
 var menuState = {
 
@@ -30,8 +28,8 @@ var menuState = {
     desc.strokeThickness = 7;
 
     background = game.add.sprite(0, 0);
-    background.width = 800;
-    background.height = 600;
+    background.width = worldX;
+    background.height = worldY;
 
     filter = game.add.filter('Fire', worldX, worldY);
     filter.alpha = 0.0;
