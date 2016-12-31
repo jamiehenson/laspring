@@ -1,2 +1,2 @@
 var worldX = 590;
-var worldY = 350;
+var worldY = 370;

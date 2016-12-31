@@ -1,4 +1,4 @@
-var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'spice-invaders');
+var game = new Phaser.Game(worldX, worldY, Phaser.WEBGL, 'spice-invaders');
 var imp;
 
 var menuState = {
