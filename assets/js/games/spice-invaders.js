@@ -8,11 +8,11 @@ var menuState = {
     game.load.image('button', "assets/images/games/spice/fire.png");
     game.load.image('imp', "assets/images/games/spice/imp.png");
     game.load.image('chili', 'assets/images/games/spice/chili-med.png');
-    game.load.script('filter', 'assets/js/games/fire-filter.js');
+    game.load.shader('filter', 'assets/js/games/fire-filter.frag');
   },
 
   create: function() {
-    filter = game.add.filter('Fire', worldX, worldY);
+    filter = new Phaser.Filter(game, null, game.cache.getShader('filter'));
     filter.setResolution(worldX, worldY);
 
     background = game.add.sprite(0, 0);
