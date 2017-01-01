@@ -37,10 +37,22 @@ var menuState = {
   }
 };
 
+var unusedPets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+var activePets = [];
+var goodPets = [];
+var badPets = [];
+var zones = [];
+var score = 0;
+var scoreText = "";
+var endTime;
+var timeLeft = 30000;
+var timeText = "";
+
 var playState = {
   preload: function() {
     pGame.load.spritesheet('animal-sheet', 'assets/images/games/pat/animal-sheet.png', 128, 128);
     pGame.load.shader('pGameFilter', 'assets/js/games/swirl-filter.frag');
+    pGame.time.advancedTiming = true;
   },
 
   create: function() {
@@ -71,46 +83,95 @@ var playState = {
       }
     }
 
-    var time = pGame.add.text(160, 10, "Time left: ",
+    timeText = pGame.add.text(160, 10, "Time: " + (timeLeft / 1000),
       {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
     );
-    var score = pGame.add.text(pGame.world.width - 100, 10, "Score: ",
+    scoreText = pGame.add.text(pGame.world.width - 10, 10, "Score: " + score,
       {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
     );
+
+    scoreText.anchor.set(1, 0);
 
     this.generatePets();
 
+    endTime = pGame.time.now + 30000;
   },
 
   generatePets: function(){
-    var pet = pGame.add.text(10, 10, "PET!",
+    var pet = pGame.add.text(10, 10, "PAT!",
       {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
     );
     var avoid = pGame.add.text(10, pGame.world.height / 2, "AVOID!",
       {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
     );
 
-    var animalIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-    this.animalLoop(animalIndices, 10, 40);
-    this.animalLoop(animalIndices, 10, 210);
+    this.animalGenerationLoop(10, 40, true);
+    this.animalGenerationLoop(10, 210, false);
+    this.drawPets();
   },
 
-  animalLoop: function(animalIndices, xmod, ymod) {
+  drawPets: function() {
+    for (var j = 0; j < 3; j++) {
+      for (var i = 0; i < 3; i++) {
+        var animal = pGame.add.sprite((i * 130) + 240, (j * 100) + 100, 'animal-sheet')
+        var chosenFrame = Math.floor(Math.random() * activePets.length);
+        animal.frame = activePets[chosenFrame];
+        animal.width = 70;
+        animal.height = 70;
+        animal.anchor.set(0.5);
+        animal.inputEnabled = true;
+        animal.input.userHandCursor = true;
+        animal.key = activePets[chosenFrame]
+        animal.events.onInputDown.add(this.animalPressed, this);
+        zones.push(animal);
+      }
+    }
+  },
+
+  animalPressed: function(animal) {
+    if (goodPets.indexOf(animal.key) != -1) {
+      score += 50;
+    } else {
+      endTime -= 1000;
+    }
+    scoreText.text = "Score: " + score;
+  },
+
+  animalGenerationLoop: function(xmod, ymod, good) {
     for (var j = 0; j < 2; j++) {
       for (var i = 0; i < 2; i++) {
         var animal = pGame.add.sprite((i * 69) + xmod, (j * 69) + ymod, 'animal-sheet')
-        var chosenFrame = Math.floor(Math.random() * animalIndices.length);
-        animal.frame = animalIndices[chosenFrame];
+        var chosenFrame = Math.floor(Math.random() * unusedPets.length);
+        animal.frame = unusedPets[chosenFrame];
         animal.width = 64;
         animal.height = 64;
-        animalIndices.splice(chosenFrame, 1);
+        activePets.push(unusedPets[chosenFrame]);
+        if (good) {
+          goodPets.push(unusedPets[chosenFrame])
+        } else {
+          badPets.push(unusedPets[chosenFrame]);
+        }
+        unusedPets.splice(chosenFrame, 1);
       }
     }
   },
 
   update: function(){
     pGameFilter.update();
+    if (timeLeft <= 0) {
+      this.endGame();
+      timeText.text = "Time: 0";
+    } else {
+      timeLeft = endTime - pGame.time.now;
+      timeText.text = "Time: " + parseInt(timeLeft / 1000);
+    }
+  },
+
+  restart: function() {
+  },
+
+  endGame: function(){
+    console.log("over");
   }
 }
 
