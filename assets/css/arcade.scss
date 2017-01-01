@@ -121,7 +121,7 @@ body {
     right: 0;
     background: linear-gradient(transparentize($screen-background,1) 50%, transparentize(darken($screen-background,10),0.75) 50%), linear-gradient(90deg,transparentize(red,0.94),transparentize(green,0.98),transparentize(blue,0.94));
     z-index: 2;
-    background-size: 100% 4px, 3px 100%;
+    background-size: 100% 3px, 3px 100%;
     pointer-events: none;
   }
 
