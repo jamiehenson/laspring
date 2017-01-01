@@ -225,6 +225,7 @@ body {
     cursor: pointer;
     font-size: 0.8em;
     &:hover {
+      background: red;
       animation: 3s shimmer infinite linear;
     }
   }
