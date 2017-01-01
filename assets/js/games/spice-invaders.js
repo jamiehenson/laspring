@@ -15,6 +15,9 @@ var menuState = {
     filter = new Phaser.Filter(game, null, game.cache.getShader('filter'));
     filter.setResolution(worldX, worldY);
 
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.aspectRatio = 1.6;
+
     background = game.add.sprite(0, 0);
     background.width = worldX;
     background.height = worldY;

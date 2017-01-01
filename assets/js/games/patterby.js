@@ -13,6 +13,9 @@ var menuState = {
     background.width = worldX;
     background.height = worldY;
 
+    pGame.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    pGame.scale.aspectRatio = 1.6;
+
     pMenuFilter = pGame.add.filter('Retro', worldX, worldY);
 
     background.filters = [pMenuFilter];

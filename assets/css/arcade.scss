@@ -60,12 +60,10 @@ body {
 
 .inner-arcade {
   display: flex;
-  flex: 1;
   flex-direction: column;
   background: black;
   background: radial-gradient(circle, black, #333);
   transform-origin: top;
-  min-height: 560px;
   box-shadow: inset 0 0 10px 0 grey;
   transition: 0.5s all;
   @media screen and (min-width: $mobile) {
@@ -79,7 +77,6 @@ body {
 
 .screen {
   display: flex;
-  flex: 1;
   flex-direction: column;
   font-family: "Arcade";
   margin: 0.5em;
@@ -94,6 +91,7 @@ body {
   animation-fill-mode: forwards;
 
   @media screen and (min-width: $mobile) {
+    flex: 1;
     margin: 2.5em;
   }
 
@@ -188,13 +186,13 @@ body {
   display: none;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
   font-family: "Arcade";
   color: white;
   .game-frame {
     display: none;
     flex-direction: column;
     flex-grow: 1;
+    width: 100%;
   }
   .header, .game, .footer {
     display: flex;
@@ -353,6 +351,7 @@ body {
 
 .arcade-padder {
   display: flex;
+  flex-grow: 1;
   align-items: flex-end;
   justify-content: flex-end;
   height: 100px;
