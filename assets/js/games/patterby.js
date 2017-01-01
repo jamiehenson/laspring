@@ -55,7 +55,7 @@ var menuState = {
 
 var unusedPets, activePets, goodPets, badPets, zones, goodCount, badCount,
   score = 0, scoreText = "", endTime, timeLeft, timeText = "", circles,
-  animals = [], endText, endSubText;
+  animals = [], endText, endSubText, endGameCondition = false;
 
 var playState = {
   preload: function() {
@@ -163,10 +163,9 @@ var playState = {
   animalPressed: function(animal) {
     if (goodPets.indexOf(animal.key) != -1) {
       score += 50;
-      endTime += 500;
       goodCount -= 1;
     } else {
-      endTime -= 1000;
+      endTime -= 5000;
       badCount -= 1;
     }
 
@@ -205,9 +204,10 @@ var playState = {
 
   update: function(){
     pGameFilter.update();
-    if (timeLeft <= 0) {
+    if (timeLeft <= 0 && !endGameCondition) {
       this.endGame();
       timeText.text = "Time: 0";
+      endGameCondition = true;
     } else {
       timeLeft = endTime - pGame.time.now;
       timeText.text = "Time: " + parseInt(timeLeft / 1000);
@@ -215,7 +215,6 @@ var playState = {
   },
 
   endGame: function(){
-    pGame.paused = true;
     endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + score / 50 + " critters who felt the love.",
       {font: "36px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
     );
@@ -229,11 +228,8 @@ var playState = {
   },
 
   restart: function() {
-    pGame.paused = false;
-    timeLeft = 60000;
-    endText.kill();
-    endSubText.kill();
-    this.generatePets();
+    endGameCondition = false;
+    pGame.state.start(pGame.state.current);
   }
 }
 
