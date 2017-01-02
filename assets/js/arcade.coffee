@@ -84,6 +84,8 @@ $ ->
     $(".play-message").text("")
     $(".play-button").removeClass("fa fa-volume-up fa-volume-off")
     $(".arcade-player").removeClass("on")
+    $(".about-view").addClass("off")
+    $(".game-menu").removeClass("off")
     audio.pause()
     audio.currentTime = 0;
     audio = ''
@@ -92,11 +94,17 @@ $ ->
     generateColour(true)
 
   $(".about-link").click ->
-    $(".about-view").removeClass("off")
-    $(".game-menu").addClass("off")
-    $(".game-frame").hide()
-    $(".game-view").hide()
-
-  $(".about-back").click ->
-    $(".about-view").addClass("off")
-    $(".game-menu").removeClass("off")
+    audio.pause()
+    audio.currentTime = 0;
+    audio = ''
+    $(".play-message").text("")
+    $(".play-button").removeClass("fa fa-volume-up fa-volume-off")
+    $(".arcade-player").removeClass("on")
+    if $(".about-view").hasClass("off")
+      $(".about-view").removeClass("off")
+      $(".game-menu").addClass("off")
+      $(".game-frame").hide()
+      $(".game-view").hide()
+    else
+      $(".about-view").addClass("off")
+      $(".game-menu").removeClass("off")

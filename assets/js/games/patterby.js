@@ -207,7 +207,7 @@ var playState = {
 
   update: function(){
     pGameFilter.update();
-    if (timeLeft <= 0 && !endGameCondition) {
+    if (timeLeft <= 0 && endGameCondition == false) {
       this.endGame();
       timeText.text = "Time: 0";
       endGameCondition = true;
