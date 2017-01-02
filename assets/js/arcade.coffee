@@ -2,13 +2,14 @@
 ---
 
 $ ->
-  passerby = new Audio('')
-  hands = new Audio('')
+  passerby = new Audio('assets/tunes/passerby64.m4a')
+  hands = new Audio('assets/tunes/hands64.m4a')
   audio = ''
 
-  $(".play-button").click ->
-    if $(this).hasClass("fa-play") then audio.play() else audio.pause()
-    $(this).toggleClass("fa-play fa-pause")
+  $(".arcade-player").click ->
+    if audio != ''
+      if $(".play-button").hasClass("fa-play") then audio.play() else audio.pause()
+      $(".play-button").toggleClass("fa-play fa-pause")
 
   surfaces = ['arrows', 'carbon', 'cube', 'honeycomb', 'marrakech', 'posh', 'rhombus', 'stars', 'zigzag']
 
@@ -27,15 +28,17 @@ $ ->
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
     $(".game-menu").addClass("off")
-    $(".play-button").addClass("fa fa-play")
+    $(".play-button").addClass("fa fa-pause")
     if $(this).hasClass("game-one")
       $(".game-frame.game-one").css("display", "flex")
-      $(".play-message").text("Passerby")
+      $(".play-message").text("- Passerby -")
       audio = passerby
     if $(this).hasClass("game-two")
       $(".game-frame.game-two").css("display", "flex")
-      $(".play-message").text("Heart & Soul")
+      $(".play-message").text("- Heart & Soul -")
       audio = hands
+    $(".arcade-player").addClass("on")
+    audio.play()
 
   $(".back").click ->
     game.state.start('menu') for game in Phaser.GAMES
@@ -46,7 +49,10 @@ $ ->
     $(".screen").removeClass("off")
     $(".play-message").text("")
     $(".play-button").removeClass("fa fa-play fa-pause")
+    $(".arcade-player").removeClass("on")
     audio.pause()
+    audio.currentTime = 0;
+    audio = ''
 
   $(".colour-shuffle").click ->
     generateColour(true)

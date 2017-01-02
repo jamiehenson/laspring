@@ -206,6 +206,7 @@ body {
   justify-content: center;
   font-family: "Arcade";
   color: white;
+  flex-grow: 1;
   .game-frame {
     display: none;
     flex-direction: column;
@@ -356,6 +357,12 @@ body {
 }
 
 .arcade-player {
+  cursor: pointer;
+  &.on:hover {
+    span, i {
+      color: #00F000;
+    }
+  }
   .player-info {
     width: 100%;
     padding: 0.5em;
@@ -363,9 +370,6 @@ body {
     background: blue;
     border: 3px solid yellow;
     text-align: center;
-  }
-  .play-button {
-    display: none;
   }
 }
 
