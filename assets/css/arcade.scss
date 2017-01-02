@@ -163,8 +163,25 @@ body {
     cursor: pointer;
     flex-grow: 1;
     transform: rotate(0deg);
+    background-size: contain;
+    background-position: center;
+    animation: 15s background-travel infinite ease-in-out;
+    &.game-one {
+      background-image: url("../images/pixelpat.png");
+    }
+    &.game-two {
+      background-image: url("../images/pixelspice.png");
+    }
     &:hover {
-      animation: 3s shimmer infinite linear;
+      animation: 15s background-travel infinite ease-in-out, 3s shimmer infinite linear;
+    }
+    .game-icon-content {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      background: rgba(0,0,0,0.8);
+      padding: 1em;
+      color: white;
     }
     @media screen and (min-width: $mobile) {
       font-size: 1.3em;
