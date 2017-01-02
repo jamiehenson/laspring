@@ -208,6 +208,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: white;
     &.on {
       display: flex;
     }
@@ -221,8 +222,15 @@ body {
       color: lime;
       text-align: center;
       margin-bottom: 0.5em;
+      transition: 0.3s all;
+      &.open {
+        background-color: grey;
+        transition: 0.5s all;
+        animation: 1s shimmer infinite linear;
+      }
       &.invalid {
         background-color: red;
+        transition: 0.3s all;
         animation: 1s shimmer infinite linear;
       }
     }
@@ -399,9 +407,19 @@ body {
 
 .arcade-player {
   cursor: pointer;
-  &.on:hover {
+  &.on:active {
     span, i {
-      color: #00F000;
+      color: yellow;
+    }
+  }
+  &.playing {
+    span, i {
+      color: lime;
+    }
+  }
+  &.paused {
+    span, i {
+      color: red;
     }
   }
   .player-info {
@@ -411,6 +429,9 @@ body {
     background: blue;
     border: 3px solid yellow;
     text-align: center;
+  }
+  .play-button {
+    font-size: 1.2em;
   }
 }
 

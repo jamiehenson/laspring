@@ -15,8 +15,9 @@ $ ->
 
   $(".arcade-player").click ->
     if audio != ''
-      if $(".play-button").hasClass("fa-play") then audio.play() else audio.pause()
-      $(".play-button").toggleClass("fa-play fa-pause")
+      if $(".play-button").hasClass("fa-volume-off") then audio.play() else audio.pause()
+      $(this).toggleClass("playing paused")
+      $(".play-button").toggleClass("fa-volume-off fa-volume-up")
 
   surfaces = ['arrows', 'carbon', 'cube', 'honeycomb', 'marrakech', 'posh', 'rhombus', 'stars', 'zigzag']
 
@@ -33,8 +34,8 @@ $ ->
   generalGameLoadStuff = ->
     $(".game-view").css("display", "flex")
     $(".game-menu").addClass("off")
-    $(".play-button").addClass("fa fa-pause")
-    $(".arcade-player").addClass("on")
+    $(".play-button").addClass("fa fa-volume-up")
+    $(".arcade-player").addClass("on").addClass("playing")
     $(".game-auth-input").val("")
 
   generateColour()
@@ -43,18 +44,22 @@ $ ->
     if $(this).parent().hasClass("game-one")
       generalGameLoadStuff()
       $(".game-frame.game-one").css("display", "flex")
-      $(".play-message").text("- Passerby -")
+      $(".play-message").text("Passerby")
       audio = passerby
       audio.play()
     if $(this).parent().hasClass("game-two")
       $(".game-two .game-icon-content").hide()
       $(".game-auth-box").addClass("on")
+      $(".game-auth-input").addClass("open")
+      setTimeout ( ->
+        $(".game-auth-input").removeClass("open")
+      ), 1000
 
   $(".game-auth-go").click ->
     if codes.indexOf($(".game-auth-input").val().toLowerCase()) != -1
       generalGameLoadStuff()
       $(".game-frame.game-two").css("display", "flex")
-      $(".play-message").text("- Heart & Soul -")
+      $(".play-message").text("Heart & Soul")
       $(".game-auth-box").removeClass("on")
       $(".game-two .game-icon-content").show()
       audio = hands
@@ -77,7 +82,7 @@ $ ->
     $(".game-menu").removeClass("off")
     $(".screen").removeClass("off")
     $(".play-message").text("")
-    $(".play-button").removeClass("fa fa-play fa-pause")
+    $(".play-button").removeClass("fa fa-volume-up fa-volume-off")
     $(".arcade-player").removeClass("on")
     audio.pause()
     audio.currentTime = 0;
