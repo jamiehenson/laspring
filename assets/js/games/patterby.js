@@ -58,7 +58,7 @@ var menuState = {
 
 var unusedPets, activePets, goodPets, badPets, zones, goodCount, badCount,
   score = 0, scoreText = "", endTime, timeLeft, timeText = "", circles,
-  animals = [], endText, endSubText, endGameCondition = false;
+  animals = [], endGameCondition = false;
 
 var playState = {
   preload: function() {
@@ -218,16 +218,20 @@ var playState = {
   },
 
   endGame: function(){
-    endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + score / 50 + " critters who felt the love.",
-      {font: "36px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
+    var rect = pGame.add.graphics(0, 0);
+    rect.beginFill(0x00FFFF, 0.6);
+    rect.drawRect(0, 0, pGame.world.width, pGame.world.height);
+
+    var endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + score / 50 + " critters who felt the love.",
+      {font: "32px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
     );
-    endSubText = pGame.add.text(pGame.world.centerX, pGame.world.height - 10, "Tap to go again!",
-      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
+    var endSubText = pGame.add.text(pGame.world.centerX, pGame.world.height - 10, "Tap here to go again!",
+      {font: "26px Arcade", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: pGame.world.width / 1.5, align: "center", backgroundColor: "#0000FF"}
     );
     endText.anchor.set(0.5, 0);
     endSubText.anchor.set(0.5, 1);
-
-    pGame.input.onTap.addOnce(this.restart, this);
+    endSubText.inputEnabled = true;
+    endSubText.events.onInputDown.add(this.restart, this);
   },
 
   restart: function() {
