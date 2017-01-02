@@ -2,6 +2,14 @@
 ---
 
 $ ->
+  passerby = new Audio('')
+  hands = new Audio('')
+  audio = ''
+
+  $(".play-button").click ->
+    if $(this).hasClass("fa-play") then audio.play() else audio.pause()
+    $(this).toggleClass("fa-play fa-pause")
+
   surfaces = ['arrows', 'carbon', 'cube', 'honeycomb', 'marrakech', 'posh', 'rhombus', 'stars', 'zigzag']
 
   generateColour = (manual) ->
@@ -19,8 +27,15 @@ $ ->
   $(".game-icon").click ->
     $(".game-view").css("display", "flex")
     $(".game-menu").addClass("off")
-    $(".game-frame.game-one").css("display", "flex") if $(this).hasClass("game-one")
-    $(".game-frame.game-two").css("display", "flex") if $(this).hasClass("game-two")
+    $(".play-button").addClass("fa fa-play")
+    if $(this).hasClass("game-one")
+      $(".game-frame.game-one").css("display", "flex")
+      $(".play-message").text("Passerby")
+      audio = passerby
+    if $(this).hasClass("game-two")
+      $(".game-frame.game-two").css("display", "flex")
+      $(".play-message").text("Heart & Soul")
+      audio = hands
 
   $(".back").click ->
     game.state.start('menu') for game in Phaser.GAMES
@@ -29,6 +44,9 @@ $ ->
     $(".game-view").hide()
     $(".game-menu").removeClass("off")
     $(".screen").removeClass("off")
+    $(".play-message").text("")
+    $(".play-button").removeClass("fa fa-play fa-pause")
+    audio.pause()
 
   $(".colour-shuffle").click ->
     generateColour(true)
