@@ -158,9 +158,7 @@ body {
     margin: 1%;
     text-align: center;
     font-size: 1em;
-    padding: 0.9em;
     flex-direction: column;
-    cursor: pointer;
     flex-grow: 1;
     transform: rotate(0deg);
     background-size: contain;
@@ -182,6 +180,10 @@ body {
       background: rgba(0,0,0,0.8);
       padding: 1em;
       color: white;
+      margin: 1em;
+      box-sizing: border-box;
+      width: 100%;
+      cursor: pointer;
     }
     @media screen and (min-width: $mobile) {
       font-size: 1.3em;
@@ -197,6 +199,45 @@ body {
   }
   .fa-lock, .fa-unlock {
     font-size: 4em;
+  }
+  .game-auth-box {
+    display: none;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &.on {
+      display: flex;
+    }
+    .game-auth-input {
+      font-size: 1.5em;
+      padding: 0.5em;
+      font-family: "Arcade";
+      width: 100%;
+      box-sizing: border-box;
+      background: #333;
+      color: lime;
+      text-align: center;
+      margin-bottom: 0.5em;
+      &.invalid {
+        background-color: red;
+        animation: 1s shimmer infinite linear;
+      }
+    }
+    .game-auth-button {
+      padding: 0.5em;
+      background: hotpink;
+      color: yellow;
+      border: 3px solid yellow;
+      margin: 0.5em auto;
+      width: 150px;
+      cursor: pointer;
+      &:hover {
+        background: red;
+      }
+    }
   }
 }
 
