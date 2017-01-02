@@ -93,7 +93,6 @@ body {
   @media screen and (min-width: $mobile) {
     flex: 1;
     margin: 2.5em;
-    min-height: 560px;
   }
 
   &:after {
@@ -177,10 +176,9 @@ body {
       display: flex;
       flex-grow: 1;
       flex-direction: column;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.7);
       padding: 1em;
       color: white;
-      margin: 1em;
       box-sizing: border-box;
       width: 100%;
       cursor: pointer;
@@ -297,14 +295,6 @@ body {
   }
 }
 
-.game-two {
-  .header {
-    background: hotpink;
-    border: 3px solid yellow;
-    margin: 0.5em;
-  }
-}
-
 .arcade-header, .arcade-player, .arcade-drawer {
   display: flex;
   align-items: center;
@@ -407,9 +397,13 @@ body {
 
 .arcade-player {
   cursor: pointer;
-  &.on:active {
-    span, i {
-      color: yellow;
+  display: none;
+  &.on {
+    display: flex;
+    &:active {
+      span, i {
+        color: yellow;
+      }
     }
   }
   &.playing {
