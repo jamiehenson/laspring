@@ -302,6 +302,8 @@ var playState = {
     enemies.removeAll();
     game.tweens.removeAll();
     this.createEnemies();
+    score = 0;
+    scoreText.text = scoreString + score;
 
     player.revive();
     stateText.visible = false;
