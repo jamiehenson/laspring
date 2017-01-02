@@ -54,6 +54,8 @@ $ ->
   $(".about-link").click ->
     $(".about-view").removeClass("off")
     $(".game-menu").addClass("off")
+    $(".game-frame").hide()
+    $(".game-view").hide()
 
   $(".about-back").click ->
     $(".about-view").addClass("off")
