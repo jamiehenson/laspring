@@ -93,6 +93,7 @@ body {
   @media screen and (min-width: $mobile) {
     flex: 1;
     margin: 2.5em;
+    min-height: 560px;
   }
 
   &:after {
@@ -297,6 +298,46 @@ body {
   }
 }
 
+.about-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Arcade";
+  color: white;
+  flex: 1;
+  flex-direction: column;
+  padding: 0.5em;
+  font-size: 1.3em;
+  text-align: center;
+  line-height: 1.5;
+  background: {
+    image: url("../images/pixelband.jpg");
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+  }
+  p {
+    padding: 0.5em;
+    background: rgba(0, 100, 0, 0.5);
+  }
+  @media screen and (max-width: $mobile - 1) {
+    font-size: 1em;
+  }
+  &.off {
+    display: none !important;
+  }
+  .about-back {
+    font-size: 0.65em;
+    background: hotpink;
+    border: 3px solid yellow;
+    padding: 0.5em;
+    cursor: pointer;
+    &:hover {
+      animation: 3s shimmer infinite linear;
+    }
+  }
+}
+
 .arcade-player {
   span {
     width: 100%;
@@ -323,7 +364,7 @@ body {
     border-bottom-right-radius: 15px;
     transform: perspective(500px) rotateX(30deg) scale(1.11);
   }
-  span {
+  .drawer-button {
     color: white;
     margin: 0 0.5em;
     padding: 0.5em;
