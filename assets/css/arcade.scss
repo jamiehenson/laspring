@@ -405,7 +405,7 @@ body {
   display: none;
   &.on {
     display: flex;
-    &:hover, &:active {
+    &:active {
       span, i {
         color: yellow;
       }
