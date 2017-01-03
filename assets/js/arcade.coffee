@@ -38,6 +38,12 @@ $ ->
     $(".arcade-player").addClass("on").addClass("playing")
     $(".game-auth-input").val("")
 
+  resetAudio = ->
+    if audio != ''
+      audio.pause()
+      audio.currentTime = 0;
+      audio = ''
+
   generateColour()
 
   $(".game-icon-content").click ->
@@ -86,17 +92,13 @@ $ ->
     $(".arcade-player").removeClass("on")
     $(".about-view").addClass("off")
     $(".game-menu").removeClass("off")
-    audio.pause()
-    audio.currentTime = 0;
-    audio = ''
+    resetAudio()
 
   $(".colour-shuffle").click ->
     generateColour(true)
 
   $(".about-link").click ->
-    audio.pause()
-    audio.currentTime = 0;
-    audio = ''
+    resetAudio()
     $(".play-message").text("")
     $(".play-button").removeClass("fa fa-volume-up fa-volume-off")
     $(".arcade-player").removeClass("on")
@@ -108,3 +110,6 @@ $ ->
     else
       $(".about-view").addClass("off")
       $(".game-menu").removeClass("off")
+
+  $(window).unload ->
+    resetAudio()

@@ -169,9 +169,6 @@ body {
     &.game-two {
       background-image: url("../images/pixelspice.png");
     }
-    &:hover {
-      animation: 15s background-travel infinite ease-in-out, 3s shimmer infinite linear;
-    }
     .game-icon-content {
       display: flex;
       flex-grow: 1;
@@ -182,6 +179,9 @@ body {
       box-sizing: border-box;
       width: 100%;
       cursor: pointer;
+      &:hover {
+        background: rgba(0,0,0,0.5);
+      }
     }
     @media screen and (min-width: $mobile) {
       font-size: 1.3em;
@@ -220,16 +220,14 @@ body {
       color: lime;
       text-align: center;
       margin-bottom: 0.5em;
-      transition: 0.3s all;
+      transition: 0.5s all;
       &.open {
         background-color: grey;
         transition: 0.5s all;
-        animation: 1s shimmer infinite linear;
       }
       &.invalid {
         background-color: red;
-        transition: 0.3s all;
-        animation: 1s shimmer infinite linear;
+        transition: 0.5s all;
       }
     }
     .game-auth-button {
