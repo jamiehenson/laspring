@@ -318,6 +318,12 @@ body {
     flex: 1;
     justify-content: center;
     text-align: center;
+    background: {
+      image: url("../images/laspring-lemon.png");
+      size: contain;
+      repeat: no-repeat;
+      position: center;
+    }
   }
   a {
     color: white;
@@ -339,10 +345,15 @@ body {
   }
   .left-group, .right-group {
     display: flex;
-    width: 200px;
+    width: 175px;
+    @media screen and (max-width: $mobile - 1) {
+      width: 75px;
+      flex-direction: column;
+    }
   }
   .right-group {
     justify-content: flex-end;
+    align-items: flex-end;
   }
 }
 
