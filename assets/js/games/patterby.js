@@ -23,11 +23,11 @@ var menuState = {
     var icon = pGame.add.sprite(pGame.world.centerX, pGame.world.centerY, 'cat-sheet')
     var title = pGame.add.image(pGame.world.centerX, 10, 'pat-title');
     var desc = pGame.add.text(pGame.world.centerX, pGame.world.height - 10, "Pat as many pets as you can within the time, but only pat the right ones - some bite!",
-      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF", padding: 10 }
+      {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF", padding: 10 }
     );
     desc.lineSpacing = 5;
     pMenuFlashText = pGame.add.text(pGame.world.centerX, pGame.world.centerY, "TAP TO      START!",
-      {font: "30px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
+      {font: "30px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
     );
 
     pGame.add.tween(icon.scale).to({x: 1.25, y: 1.25}, 3000, Phaser.Easing.Linear.None, true, 0, 1000, true);
@@ -87,10 +87,10 @@ var playState = {
     ui.alpha = 0.75;
 
     timeText = pGame.add.text(160, 10, "Time: " + (timeLeft / 1000),
-      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
+      {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
     );
     scoreText = pGame.add.text(pGame.world.width - 10, 10, "Score: " + score,
-      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
+      {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
     );
     timeLeft = 60000;
 
@@ -120,10 +120,10 @@ var playState = {
     this.generateCircles();
 
     var pet = pGame.add.text(10, 10, "PAT!",
-      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
+      {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
     );
     var avoid = pGame.add.text(10, pGame.world.height / 2, "AVOID!",
-      {font: "18px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
+      {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center"}
     );
 
     this.animalGenerationLoop(10, 40, true);
@@ -223,10 +223,10 @@ var playState = {
     rect.drawRect(0, 0, pGame.world.width, pGame.world.height);
 
     var endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + score / 50 + " critters who felt the love.",
-      {font: "32px Arcade", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
+      {font: "32px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
     );
     var endSubText = pGame.add.text(pGame.world.centerX, pGame.world.height - 10, "Tap here to go again!",
-      {font: "26px Arcade", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: pGame.world.width / 1.5, align: "center", backgroundColor: "#0000FF"}
+      {font: "26px ArcadeNormal", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: pGame.world.width / 1.5, align: "center", backgroundColor: "#0000FF"}
     );
     endText.anchor.set(0.5, 0);
     endSubText.anchor.set(0.5, 1);

@@ -25,8 +25,8 @@ var menuState = {
 
     imp = game.add.image(game.world.centerX, game.world.centerY, 'imp')
     var title = game.add.image(game.world.centerX, 10, 'spice-title');
-    var desc = game.add.text(game.world.centerX, game.world.height - 10, "Tap on the bottom corners to move left and right, and in the top half to fire (or use arrow keys and space).\n\nThat's it.\nGive your screen, a good old tap...",
-      {font: "16px Arcade", fill: "yellow", wordWrap: true, wordWrapWidth: game.world.width, align: "center"}
+    var desc = game.add.text(game.world.centerX, game.world.height - 10, "Tap the bottom corners to move, and the top half to fire (or use arrow keys and space).\n\nThat's it.\nGive your screen, a good old tap...",
+      {font: "16px ArcadeNormal", fill: "yellow", wordWrap: true, wordWrapWidth: game.world.width, align: "center"}
     );
 
     imp.anchor.set(0.5);
@@ -100,10 +100,10 @@ var playState = {
     this.createEnemies();
 
     scoreString = 'Score: ';
-    scoreText = game.add.text(10, 10, scoreString + score, { font: '20px Arcade', fill: 'yellow' });
+    scoreText = game.add.text(10, 10, scoreString + score, { font: '20px ArcadeNormal', fill: 'yellow' });
 
     lives = game.add.group();
-    game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px Arcade', fill: 'yellow' });
+    game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px ArcadeNormal', fill: 'yellow' });
 
     endRect = game.add.graphics(0, 0);
     endRect.beginFill(0xFF0000, 0.5);
@@ -111,7 +111,7 @@ var playState = {
     endRect.visible = false;
 
     stateText = game.add.text(game.world.centerX, game.world.centerY, '',
-      { font: '24px Arcade', fill: 'yellow', backgroundColor: "red", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center" }
+      { font: '24px ArcadeNormal', fill: 'yellow', backgroundColor: "red", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center" }
     );
     stateText.anchor.set(0.5);
     stateText.visible = false;

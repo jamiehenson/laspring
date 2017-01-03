@@ -11,19 +11,23 @@ $ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
 $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
 $screen-background: #121010;
 
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'ArcadeNormal';
+  src:
+    local('Arcade Normal'),
+    url('../fonts/arcade.ttf') format('truetype');
+}
+
 @font-face {
   font-family: 'Lemon/Milk';
   src:
     local('Lemon/Milk'),
     url('../fonts/lemon.otf') format('otf'),
     url('../fonts/lemon.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Arcade';
-  src:
-    local('Arcade Normal'),
-    url('../fonts/arcade.ttf') format('truetype');
 }
 
 body {
@@ -78,14 +82,13 @@ body {
 .screen {
   display: flex;
   flex-direction: column;
-  font-family: "Arcade";
+  font-family: "ArcadeNormal";
   margin: 0.5em;
   box-shadow: inset 0 0 15px 0 white;
   overflow: hidden;
   transition: 0.5s all;
 
   transform: scale(0.000,0.0001) translate3d(0,0,0);
-  filter: brightness(50);
 
   animation: turn-on 4s linear;
   animation-fill-mode: forwards;
@@ -154,7 +157,7 @@ body {
     align-items: center;
     background: green;
     border: 3px solid yellow;
-    margin: 1%;
+    margin: 0.25em;
     text-align: center;
     font-size: 1em;
     flex-direction: column;
@@ -176,7 +179,6 @@ body {
       background: rgba(0,0,0,0.7);
       padding: 1em;
       color: white;
-      box-sizing: border-box;
       width: 100%;
       cursor: pointer;
       &:hover, &:active {
@@ -202,7 +204,7 @@ body {
     display: none;
     padding: 1em;
     background: rgba(0, 0, 0, 0.7);
-    height: 100%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -213,9 +215,8 @@ body {
     .game-auth-input {
       font-size: 1.5em;
       padding: 0.5em;
-      font-family: "Arcade";
+      font-family: "ArcadeNormal";
       width: 100%;
-      box-sizing: border-box;
       background: #333;
       color: lime;
       text-align: center;
@@ -252,7 +253,7 @@ body {
   display: none;
   align-items: center;
   justify-content: center;
-  font-family: "Arcade";
+  font-family: "ArcadeNormal";
   color: white;
   flex-grow: 1;
   .game-frame {
@@ -364,7 +365,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Arcade";
+  font-family: "ArcadeNormal";
   color: white;
   flex: 1;
   flex-direction: column;
@@ -450,7 +451,7 @@ body {
     border-top: 0;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    transform: perspective(500px) rotateX(30deg) scale(1.11);
+    transform: perspective(500px) rotateX(30deg) scale(1.105);
   }
   .drawer-button {
     color: white;
@@ -488,7 +489,7 @@ body {
   box-shadow: inset 0 0px 15px 5px black;
   @media screen and (min-width: $mobile) {
     height: 200px;
-    transform: scale(1.17);
+    transform: scale(1.16);
     border-left: 15px solid white;
     border-right: 15px solid white;
     border-radius: 10px;
