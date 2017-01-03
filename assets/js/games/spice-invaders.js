@@ -110,17 +110,19 @@ var playState = {
     endRect.drawRect(0, 0, game.world.width, game.world.height);
     endRect.visible = false;
 
-    stateText = game.add.text(game.world.centerX, game.world.centerY,' ',
+    stateText = game.add.text(game.world.centerX, game.world.centerY, '',
       { font: '24px Arcade', fill: 'yellow', backgroundColor: "red", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center" }
     );
     stateText.anchor.set(0.5);
     stateText.visible = false;
+    stateText.inputEnabled = true;
+    stateText.events.onInputDown.add(this.restart, this);
 
     for (var i = 0; i < 3; i++) {
       var life = lives.create(game.world.width - 100 + (35 * i), 60, 'ship');
       life.anchor.setTo(0.5, 0.5);
       life.angle = 90;
-      life.alpha = 0.9;
+      life.alpha = 0.95;
       life.width = 35;
       life.height = 35;
     }
@@ -134,7 +136,7 @@ var playState = {
   },
 
   createEnemies: function() {
-    for (var y = 0; y < 4; y++) {
+    for (var y = 0; y < 3; y++) {
       for (var x = 0; x < 9; x++) {
         var enemy = enemies.create(x * 55, y * 45, 'spice-sheet');
         enemy.frame = Math.floor(Math.random() * 5);
@@ -211,18 +213,16 @@ var playState = {
 
       spiceBullets.callAll('kill',this);
       var messages = [
-        "Hey hey, you won!\nHave yourself a coffee moment.\n\nTap to pour!",
-        "Oh you're so good!\n\nTap to give it another stir!",
-        "That victory, was a little bit special...\n\nTap to play again!",
-        "Lovely... simply delightful.\n\nTap to show me more",
-        "That skill makes you wanna bounce up and down a little bit.\n\nTap to continue bouncing",
+        "Hey hey, you won!\nHave yourself a coffee moment.\n\nTap here to pour!",
+        "Oh you're so good!\n\nTap here to give it another stir!",
+        "That victory, was a little bit special...\n\nTap here to play again!",
+        "Lovely... simply delightful.\n\nTap here to show me more",
+        "That skill makes you wanna bounce up and down a little bit.\n\nTap here to continue bouncing",
       ];
 
       stateText.text = messages[Math.floor(Math.random() * messages.length)];
       stateText.visible = true;
       endRect.visible = true;
-
-      game.input.onTap.addOnce(this.restart, this);
     }
   },
 
@@ -245,18 +245,16 @@ var playState = {
       explosion.play('kaboom', 30, false, true);
 
       var messages = [
-        "Too hot and spicy. Ah nah bwoii.\n\nTap to restart",
-        "Don't cumin here and waste my thyme.\n\nTap to show you have the mustard.",
-        "Cause of death: Paprika-to-blood ratio over 200%\n\nTap to cleanse",
-        "The journey of a thousand meals starts with a single spice.\n\nTap forth, my friend",
-        "No Ainz, no gainz.\n\nTap to make the great man proud."
+        "Too hot and spicy. Ah nah bwoii.\n\nTap here to restart",
+        "Don't cumin here and waste my thyme.\n\nTap here to show you have the mustard.",
+        "Cause of death: Paprika-to-blood ratio over 200%\n\nTap here to cleanse",
+        "The journey of a thousand meals starts with a single spice.\n\nTap forth here, my friend",
+        "No Ainz, no gainz.\n\nTap here to make the great man proud."
       ];
 
       stateText.text = messages[Math.floor(Math.random() * messages.length)];
       stateText.visible = true;
       endRect.visible = true;
-
-      game.input.onTap.addOnce(this.restart,this);
     }
   },
 
@@ -276,7 +274,7 @@ var playState = {
       enemyBullet.reset(shooter.body.x, shooter.body.y);
       enemyBullet.body.allowRotation = false;
       enemyBullet.rotation = game.physics.arcade.moveToObject(enemyBullet, player, ((Math.random() * 40) + 125)) - 90;
-      firingTimer = game.time.now + ((Math.random() * 2000) + 100);
+      firingTimer = game.time.now + ((Math.random() * 2000) + 1000);
     }
   },
 
