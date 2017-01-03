@@ -241,6 +241,9 @@ body {
       &:hover, &:active {
         background: red;
       }
+      @media screen and (max-width: $mobile - 1) {
+        font-size: 0.9em;
+      }
     }
   }
 }
@@ -425,6 +428,9 @@ body {
     background: blue;
     border: 3px solid yellow;
     text-align: center;
+    @media screen and (max-width: $mobile - 1) {
+      font-size: 0.75em;
+    }
   }
   .play-button {
     font-size: 1.2em;
