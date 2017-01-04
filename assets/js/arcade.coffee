@@ -2,8 +2,6 @@
 ---
 
 $ ->
-  passerby = new Audio('assets/tunes/passerby64.m4a')
-  hands = new Audio('assets/tunes/hands64.m4a')
   audio = ''
   codes = [
     'ainz',
@@ -39,9 +37,11 @@ $ ->
     $(".game-auth-input").val("")
 
   resetAudio = ->
-    if audio != ''
+    if typeof(audio) == 'object'
       audio.pause()
-      audio.currentTime = 0;
+      audio.currentTime = 0
+      audio.setAttribute('src', '')
+      audio.load();
       audio = ''
 
   generateColour()
@@ -51,7 +51,7 @@ $ ->
       generalGameLoadStuff()
       $(".game-frame.game-one").css("display", "flex")
       $(".play-message").text("Passerby")
-      audio = passerby
+      audio = new Audio('assets/tunes/passerby64.m4a')
       audio.play()
     if $(this).parent().hasClass("game-two")
       $(".game-two .game-icon-content").hide()
@@ -68,7 +68,7 @@ $ ->
       $(".play-message").text("Heart & Soul")
       $(".game-auth-box").removeClass("on")
       $(".game-two .game-icon-content").show()
-      audio = hands
+      audio = new Audio('assets/tunes/hands64.m4a')
       audio.play()
     else
       $(".game-auth-input").addClass("invalid")
@@ -89,7 +89,7 @@ $ ->
     $(".screen").removeClass("off")
     $(".play-message").text("")
     $(".play-button").removeClass("fa fa-volume-up fa-volume-off")
-    $(".arcade-player").removeClass("on")
+    $(".arcade-player").removeClass("on").removeClass("playing").removeClass("paused")
     $(".about-view").addClass("off")
     $(".game-menu").removeClass("off")
     resetAudio()
@@ -101,7 +101,7 @@ $ ->
     resetAudio()
     $(".play-message").text("")
     $(".play-button").removeClass("fa fa-volume-up fa-volume-off")
-    $(".arcade-player").removeClass("on")
+    $(".arcade-player").removeClass("on").removeClass("playing").removeClass("paused")
     if $(".about-view").hasClass("off")
       $(".about-view").removeClass("off")
       $(".game-menu").addClass("off")
