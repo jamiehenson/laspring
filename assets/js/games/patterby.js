@@ -57,8 +57,8 @@ var menuState = {
 };
 
 var unusedPets, activePets, goodPets, badPets, zones, goodCount, badCount,
-  score = 0, scoreText = "", endTime, timeLeft, timeText = "", circles,
-  animals = [], endGameCondition = false;
+  score = 0, scoreText = "", timer, timeLeft, timeText = "", circles,
+  animals = [];
 
 var playState = {
   preload: function() {
@@ -86,19 +86,28 @@ var playState = {
     ui.drawRect(150, 0, pGame.world.width, 40);
     ui.alpha = 0.75;
 
-    timeText = pGame.add.text(160, 10, "Time: " + (timeLeft / 1000),
+    timeLeft = 60;
+    timeText = pGame.add.text(160, 10, "Time: " + timeLeft,
       {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
     );
     scoreText = pGame.add.text(pGame.world.width - 10, 10, "Score: " + score,
       {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
     );
-    timeLeft = 60000;
 
     scoreText.anchor.set(1, 0);
 
     this.generatePets();
 
-    endTime = pGame.time.now + timeLeft;
+    timer = pGame.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
+  },
+
+  updateTimer: function() {
+    if (timeLeft <= 1) {
+      this.endGame();
+    } else {
+      timeLeft -= 1;
+      timeText.text = "Time: " + timeLeft;
+    }
   },
 
   generateCircles: function() {
@@ -149,8 +158,7 @@ var playState = {
         animal.frame = activePets[chosenFrame];
         animal.anchor.set(0.5);
         animal.inputEnabled = true;
-        animal.input.userHandCursor = true;
-        animal.key = activePets[chosenFrame]
+        animal.key = activePets[chosenFrame];
         animal.events.onInputDown.add(this.animalPressed, this);
         if (goodPets.indexOf(animal.key) != -1) {
           goodCount += 1;
@@ -168,7 +176,7 @@ var playState = {
       score += 50;
       goodCount -= 1;
     } else {
-      endTime -= 5000;
+      timeLeft -= 4;
       badCount -= 1;
     }
 
@@ -207,17 +215,25 @@ var playState = {
 
   update: function(){
     pGameFilter.update();
-    if (timeLeft <= 0 && endGameCondition == false) {
-      this.endGame();
-      timeText.text = "Time: 0";
-      endGameCondition = true;
-    } else {
-      timeLeft = endTime - pGame.time.now;
-      timeText.text = "Time: " + parseInt(timeLeft / 1000);
-    }
   },
 
   endGame: function(){
+    pGame.world.removeAll();
+    pGame.stage.backgroundColor = "#0000FF";
+    pGame.time.events.remove(timer);
+
+    var randomiser = Math.floor(Math.random() * 18);
+    for (var j = 0; j < 4; j++) {
+      for (var i = 0; i < 5; i++) {
+        var width = pGame.world.width / 5;
+        var height = pGame.world.height / 4;
+        var icon = pGame.add.sprite(width * i, height * j, 'animal-sheet');
+        icon.frame = ((j * 5) + i + randomiser) % 18;
+        icon.width = width;
+        icon.height = height;
+      }
+    }
+
     var rect = pGame.add.graphics(0, 0);
     rect.beginFill(0x00FFFF, 0.6);
     rect.drawRect(0, 0, pGame.world.width, pGame.world.height);
@@ -235,7 +251,6 @@ var playState = {
   },
 
   restart: function() {
-    endGameCondition = false;
     pGame.state.start(pGame.state.current);
   }
 }

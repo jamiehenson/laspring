@@ -16,6 +16,7 @@ var menuState = {
 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.aspectRatio = 1.6;
+    game.stage.backgroundColor = "#800000";
 
     background = game.add.sprite(0, 0);
     background.width = worldX;
