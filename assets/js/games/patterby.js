@@ -86,6 +86,7 @@ var playState = {
     ui.drawRect(150, 0, pGame.world.width, 40);
     ui.alpha = 0.75;
 
+    score = 0;
     timeLeft = 60;
     timeText = pGame.add.text(160, 10, "Time: " + timeLeft,
       {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "right"}
@@ -242,7 +243,7 @@ var playState = {
     rect.beginFill(0x00FFFF, 0.6);
     rect.drawRect(0, 0, pGame.world.width, pGame.world.height);
 
-    var pluralisedCritter = score > 50 ? "critters" : "critter";
+    var pluralisedCritter = score != 50 ? "critters" : "critter";
     var endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + parseInt(score / 50) + " " + pluralisedCritter + " who felt the love.",
       {font: "32px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
     );
@@ -253,8 +254,6 @@ var playState = {
     endSubText.anchor.set(0.5, 1);
     endSubText.inputEnabled = true;
     endSubText.events.onInputDown.add(this.restart, this);
-
-    score = 0;
   },
 
   restart: function() {
