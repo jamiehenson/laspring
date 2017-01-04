@@ -17,17 +17,21 @@ $screen-background: #121010;
 
 @font-face {
   font-family: 'ArcadeNormal';
+  src: url('../fonts/arcade.eot');
   src:
     local('Arcade Normal'),
-    url('../fonts/arcade.ttf') format('truetype');
+    url('../fonts/arcade.ttf') format('truetype'),
+    url('../fonts/arcade.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Lemon/Milk';
+  src: url('../fonts/lemon.eot');
   src:
     local('Lemon/Milk'),
     url('../fonts/lemon.otf') format('otf'),
-    url('../fonts/lemon.ttf') format('truetype');
+    url('../fonts/lemon.ttf') format('truetype'),
+    url('../fonts/lemon.woff') format('woff');
 }
 
 body {
@@ -508,5 +512,11 @@ body {
       color: #666;
       transition: 0.5s all;
     }
+  }
+}
+
+.ie {
+  .screen {
+    min-height: 560px;
   }
 }
