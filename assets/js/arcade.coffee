@@ -4,11 +4,12 @@
 $ ->
   audio = ''
   codes = [
-    'ainz',
-    'pupper',
-    'bosco',
-    'mehmet',
-    'cashflow'
+    'mayo', 'pupper', 'bosco', 'cashflow', 'submithub'
+    'snapes', 'trendell', 'radio1', 'billington', 'may',
+    'george', 'robkhan', 'harison', 'dayalan', 'itb',
+    'uta', 'primary', 'coda', 'koorifm', 'kiss',
+    'fox', 'gold', 'krck', '6music', 'premier',
+    'rogers', 'brewers', 'penty', 'tones', 'bates'
   ]
 
   $(".arcade-player").click ->
