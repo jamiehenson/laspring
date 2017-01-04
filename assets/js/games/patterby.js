@@ -108,6 +108,8 @@ var playState = {
       timeLeft -= 1;
       timeText.text = "Time: " + timeLeft;
     }
+    timeText.addColor("#FFFFFF", 0);
+    scoreText.addColor("#FFFFFF", 0);
   },
 
   generateCircles: function() {
@@ -175,9 +177,11 @@ var playState = {
     if (goodPets.indexOf(animal.key) != -1) {
       score += 50;
       goodCount -= 1;
+      scoreText.addColor("#00FF00", 0);
     } else {
       timeLeft -= 4;
       badCount -= 1;
+      timeText.addColor("#FF0000", 0);
     }
 
     zones -= 1;
@@ -238,7 +242,8 @@ var playState = {
     rect.beginFill(0x00FFFF, 0.6);
     rect.drawRect(0, 0, pGame.world.width, pGame.world.height);
 
-    var endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + score / 50 + " critters who felt the love.",
+    var pluralisedCritter = score > 50 ? "critters" : "critter";
+    var endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + parseInt(score / 50) + " " + pluralisedCritter + " who felt the love.",
       {font: "32px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
     );
     var endSubText = pGame.add.text(pGame.world.centerX, pGame.world.height - 10, "Tap here to go again!",
@@ -248,6 +253,8 @@ var playState = {
     endSubText.anchor.set(0.5, 1);
     endSubText.inputEnabled = true;
     endSubText.events.onInputDown.add(this.restart, this);
+
+    score = 0;
   },
 
   restart: function() {
