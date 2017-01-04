@@ -517,6 +517,11 @@ body {
 
 .ie {
   .screen {
-    min-height: 560px;
+    min-height: 480px;
+  }
+  .game-view {
+    .header, .game, .footer {
+      flex: inherit !important;
+    }
   }
 }
