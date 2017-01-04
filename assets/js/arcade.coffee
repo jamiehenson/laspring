@@ -45,6 +45,10 @@ $ ->
       audio.load();
       audio = ''
 
+  determineIE = ->
+    agent = window.navigator.userAgent
+    return (agent.indexOf('MSIE') > 0 || ! !agent.match(/Trident\/7\./))
+
   generateColour()
 
   $(".game-icon-content").click ->
@@ -114,3 +118,5 @@ $ ->
 
   $(window).unload ->
     resetAudio()
+
+  $(".outer-arcade").addClass("ie") if determineIE()

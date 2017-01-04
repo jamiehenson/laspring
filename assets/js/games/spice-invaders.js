@@ -13,8 +13,10 @@ var menuState = {
     filter = new Phaser.Filter(game, null, game.cache.getShader('filter'));
     filter.setResolution(worldX, worldY);
 
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    game.scale.aspectRatio = 1.6;
+    if (!Phaser.Device.ie) {
+      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      game.scale.aspectRatio = 1.6;
+    }
     game.stage.backgroundColor = "#800000";
 
     background = game.add.sprite(0, 0);
