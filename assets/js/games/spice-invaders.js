@@ -6,7 +6,6 @@ var menuState = {
     game.load.image('spice-title', "assets/images/games/spice/spice-title.png");
     game.load.image('button', "assets/images/games/spice/fire.png");
     game.load.image('imp', "assets/images/games/spice/imp.png");
-    game.load.image('chili', 'assets/images/games/spice/chili-med.png');
     game.load.shader('filter', 'assets/js/games/fire-filter.frag');
   },
 
