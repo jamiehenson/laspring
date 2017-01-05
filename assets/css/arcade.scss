@@ -486,7 +486,7 @@ body {
 .arcade-padder {
   display: flex;
   flex-grow: 1;
-  align-items: flex-end;
+  flex-direction: column;
   justify-content: flex-end;
   height: 100px;
   transition: 0.5s all;
@@ -498,9 +498,22 @@ body {
     border-right: 15px solid white;
     border-radius: 10px;
   }
-  a {
+  .palm-pic {
+    flex: 10;
+    text-align: center;
+    img {
+      margin-top: 30px;
+    }
+  }
+  .credz-link {
+    flex: 1;
     padding: 0.5em;
-    text-decoration: none;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+    a {
+      text-decoration: none;
+    }
   }
   .credz {
     color: #444;
