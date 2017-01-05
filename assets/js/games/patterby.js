@@ -164,6 +164,7 @@ var playState = {
         animal.anchor.set(0.5);
         animal.inputEnabled = true;
         animal.key = activePets[chosenFrame];
+        animal.hitArea = new Phaser.Rectangle(-80, -80, 100, 100);
         animal.events.onInputDown.add(this.animalPressed, this);
         if (goodPets.indexOf(animal.key) != -1) {
           goodCount += 1;
