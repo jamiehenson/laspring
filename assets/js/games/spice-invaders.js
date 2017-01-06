@@ -128,7 +128,7 @@ var playState = {
       window.open(link + tweet, "_blank");
     }, this);
     tweetButton.anchor.set(0.5);
-    tweetButton.hitArea = new Phaser.Rectangle(-50, -50, 50, 50);
+    tweetButton.hitArea = new Phaser.Rectangle(-50, -50, 100, 100);
     tweetButton.visible = false;
 
     for (var i = 0; i < 3; i++) {

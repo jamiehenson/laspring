@@ -266,7 +266,7 @@ var playState = {
     endSubText.anchor.set(0.5, 1);
     endSubText.inputEnabled = true;
     tweetButton.anchor.set(0.5);
-    tweetButton.hitArea = new Phaser.Rectangle(-50, -50, 50, 50);
+    tweetButton.hitArea = new Phaser.Rectangle(-40, -40, 80, 80);
     endSubText.events.onInputDown.add(this.restart, this);
   },
 
