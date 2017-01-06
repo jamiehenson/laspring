@@ -248,6 +248,7 @@ var playState = {
     rect.drawRect(0, 0, pGame.world.width, pGame.world.height);
 
     var pluralisedCritter = score != 50 ? "critters" : "critter";
+    var pluralisedPet = score != 50 ? "pets" : "pet";
     var endText = pGame.add.text(pGame.world.centerX, 10, "You got " + score + " points!\n\nThat's " + parseInt(score / 50) + " " + pluralisedCritter + " who felt the love.",
       {font: "32px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center", backgroundColor: "#0000FF"}
     );
@@ -257,7 +258,7 @@ var playState = {
 
     var tweetButton = pGame.add.button(pGame.world.centerX, pGame.world.height - 110, 'twit', function() {
       var link = "https://twitter.com/intent/tweet?text=";
-      var tweetString = 'I just patted ' + parseInt(score / 50) + ' pets on Patterby whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
+      var tweetString = 'I just patted ' + parseInt(score / 50) + ' ' + pluralisedPet + ' on Patterby whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
       var tweet = encodeURIComponent(tweetString);
       window.open(link + tweet, "_blank");
     }, this);
