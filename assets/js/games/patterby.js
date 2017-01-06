@@ -255,7 +255,7 @@ var playState = {
       {font: "26px ArcadeNormal", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: pGame.world.width / 1.5, align: "center", backgroundColor: "#0000FF"}
     );
 
-    var button = pGame.add.button(pGame.world.centerX, pGame.world.height - 110, 'twit', function() {
+    var tweetButton = pGame.add.button(pGame.world.centerX, pGame.world.height - 110, 'twit', function() {
       var link = "http://twitter.com/home?status=";
       var tweetString = 'I just patted ' + parseInt(score / 50) + ' pets on Patterby whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
       var tweet = encodeURIComponent(tweetString);
@@ -265,7 +265,8 @@ var playState = {
     endText.anchor.set(0.5, 0);
     endSubText.anchor.set(0.5, 1);
     endSubText.inputEnabled = true;
-    button.anchor.set(0.5);
+    tweetButton.anchor.set(0.5);
+    tweetButton.hitArea = new Phaser.Rectangle(-50, -50, 50, 50);
     endSubText.events.onInputDown.add(this.restart, this);
   },
 

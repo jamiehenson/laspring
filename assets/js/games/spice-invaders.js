@@ -55,7 +55,7 @@ var menuState = {
 
 var player, enemies, bullets, bulletTime = 0, cursors, fireButton, explosions, background,
   score = 0, scoreString = '', scoreText, lives, enemyBullet, firingTimer = 0, stateText,
-  livingEnemies = [], isLeft, isRight, isFire, endRect;
+  livingEnemies = [], isLeft, isRight, isFire, endRect, tweetButton;
 
 var playState = {
   preload: function() {
@@ -65,6 +65,7 @@ var playState = {
     game.load.spritesheet('kaboom', 'assets/images/games/spice/kaboom.png', 128, 128);
     game.load.spritesheet('bullet-sheet', 'assets/images/games/spice/bullet-sheet.png', 35, 35);
     game.load.spritesheet('spice-sheet', 'assets/images/games/spice/spice-sheet.png', 30, 30);
+    game.load.image('twit', 'assets/images/games/twit-clear.png');
   },
 
   create: function() {
@@ -119,6 +120,16 @@ var playState = {
     stateText.visible = false;
     stateText.inputEnabled = true;
     stateText.events.onInputDown.add(this.restart, this);
+
+    tweetButton = game.add.button(game.world.centerX, game.world.height - 60, 'twit', function() {
+      var link = "http://twitter.com/home?status=";
+      var tweetString = 'I just got ' + score + ' on Spice Invaders whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
+      var tweet = encodeURIComponent(tweetString);
+      window.open(link + tweet, "_blank");
+    }, this);
+    tweetButton.anchor.set(0.5);
+    tweetButton.hitArea = new Phaser.Rectangle(-50, -50, 50, 50);
+    tweetButton.visible = false;
 
     for (var i = 0; i < 3; i++) {
       var life = lives.create(game.world.width - 100 + (35 * i), 60, 'ship');
@@ -257,6 +268,7 @@ var playState = {
       stateText.text = messages[Math.floor(Math.random() * messages.length)];
       stateText.visible = true;
       endRect.visible = true;
+      tweetButton.visible = true;
     }
   },
 
@@ -308,6 +320,7 @@ var playState = {
     player.revive();
     stateText.visible = false;
     endRect.visible = false;
+    tweetButton.visible = false;
   }
 }
 
