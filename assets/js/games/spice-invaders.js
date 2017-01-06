@@ -122,7 +122,7 @@ var playState = {
     stateText.events.onInputDown.add(this.restart, this);
 
     tweetButton = game.add.button(game.world.centerX, game.world.height - 60, 'twit', function() {
-      var link = "http://twitter.com/home?status=";
+      var link = "https://twitter.com/intent/tweet?text=";
       var tweetString = 'I just got ' + score + ' on Spice Invaders whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
       var tweet = encodeURIComponent(tweetString);
       window.open(link + tweet, "_blank");

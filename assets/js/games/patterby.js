@@ -256,7 +256,7 @@ var playState = {
     );
 
     var tweetButton = pGame.add.button(pGame.world.centerX, pGame.world.height - 110, 'twit', function() {
-      var link = "http://twitter.com/home?status=";
+      var link = "https://twitter.com/intent/tweet?text=";
       var tweetString = 'I just patted ' + parseInt(score / 50) + ' pets on Patterby whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
       var tweet = encodeURIComponent(tweetString);
       window.open(link + tweet, "_blank");
