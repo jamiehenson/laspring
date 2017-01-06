@@ -66,6 +66,7 @@ var playState = {
   preload: function() {
     pGame.load.spritesheet('animal-sheet', 'assets/images/games/pat/animals.png', 80, 80);
     pGame.load.shader('pGameFilter', 'assets/js/games/swirl-filter.frag');
+    pGame.load.image('twit', 'assets/images/games/twit.png');
     pGame.time.advancedTiming = true;
   },
 
@@ -253,9 +254,18 @@ var playState = {
     var endSubText = pGame.add.text(pGame.world.centerX, pGame.world.height - 10, "Tap here to go again!",
       {font: "26px ArcadeNormal", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: pGame.world.width / 1.5, align: "center", backgroundColor: "#0000FF"}
     );
+
+    var button = pGame.add.button(pGame.world.centerX, pGame.world.height - 110, 'twit', function() {
+      var link = "http://twitter.com/home?status=";
+      var tweetString = 'I just patted ' + parseInt(score / 50) + ' pets on Patterby whilst listening to @wearelaspring! #playlaspring';
+      var tweet = encodeURIComponent(tweetString);
+      window.open(link + tweet, "_blank");
+    }, this);
+
     endText.anchor.set(0.5, 0);
     endSubText.anchor.set(0.5, 1);
     endSubText.inputEnabled = true;
+    button.anchor.set(0.5);
     endSubText.events.onInputDown.add(this.restart, this);
   },
 
