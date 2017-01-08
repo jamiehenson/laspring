@@ -41,11 +41,20 @@ body {
   background-size: cover;
   display: flex;
   min-height: 100vh;
+  min-width: 400px;
   margin: 0 !important;
   padding: 0 !important;
   @media screen and (min-width: $mobile) {
     align-items: center;
   }
+}
+
+h1.header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.1em;
+  z-index: 0;
 }
 
 .outer-arcade {
@@ -59,6 +68,7 @@ body {
   border-radius: 0.5em 0.5em 0 0;
   padding: 0;
   transition: 0.5s all;
+  z-index: 1;
   @media screen and (min-width: $mobile) {
     border-left: 1em solid white;
     border-right: 1em solid white;
