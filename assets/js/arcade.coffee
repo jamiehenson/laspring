@@ -10,7 +10,7 @@ $ ->
     'uta', 'primary', 'coda', 'koorifm', 'kiss',
     'fox', 'gold', 'krck', '6music', 'premier',
     'rogers', 'brewers', 'penty', 'tones', 'bates',
-    'watson', 'amyb', 'tour', 'dancer', 'ssd',
+    'watson', 'amby', 'tour', 'dancer', 'ssd',
     'anyword'
   ]
 
