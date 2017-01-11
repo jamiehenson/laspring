@@ -9,7 +9,9 @@ $ ->
     'george', 'robkhan', 'harison', 'dayalan', 'itb',
     'uta', 'primary', 'coda', 'koorifm', 'kiss',
     'fox', 'gold', 'krck', '6music', 'premier',
-    'rogers', 'brewers', 'penty', 'tones', 'bates'
+    'rogers', 'brewers', 'penty', 'tones', 'bates',
+    'watson', 'amyb', 'tour', 'dancer', 'ssd',
+    'anyword'
   ]
 
   $(".arcade-player").click ->
