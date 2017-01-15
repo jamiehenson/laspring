@@ -117,6 +117,9 @@ var playState = {
     endRect.drawRect(0, 0, game.world.width, game.world.height);
     endRect.visible = false;
 
+    score = 0;
+    level = 0;
+
     stateText = game.add.text(game.world.centerX, game.world.centerY, '',
       { font: '24px ArcadeNormal', fill: 'yellow', backgroundColor: "red", wordWrap: true, wordWrapWidth: pGame.world.width, align: "center" }
     );
