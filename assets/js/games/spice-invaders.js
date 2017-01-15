@@ -55,7 +55,8 @@ var menuState = {
 
 var player, enemies, bullets, bulletTime = 0, cursors, fireButton, explosions, background,
   score = 0, scoreString = '', scoreText, lives, enemyBullet, firingTimer = 0, stateText,
-  livingEnemies = [], isLeft, isRight, isFire, endRect, tweetButton;
+  livingEnemies = [], isLeft, isRight, isFire, endRect, tweetButton, level = 0, levelString = '',
+  levelText, bulletModifier, firingModifier, restartTimerText = '', restartTimerValue = 3;
 
 var playState = {
   preload: function() {
@@ -104,6 +105,9 @@ var playState = {
 
     scoreString = 'Score: ';
     scoreText = game.add.text(10, 10, scoreString + score, { font: '20px ArcadeNormal', fill: 'yellow' });
+
+    levelString = 'Level: ';
+    levelText = game.add.text(10, 35, levelString + (level + 1), { font: '20px ArcadeNormal', fill: 'yellow' });
 
     lives = game.add.group();
     game.add.text(game.world.width - 100, 10, 'Lives : ', { font: '20px ArcadeNormal', fill: 'yellow' });
@@ -161,7 +165,8 @@ var playState = {
     enemies.x = 20;
     enemies.y = 40;
 
-    var tween = game.add.tween(enemies).to( { x: 125 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    var tweenTime = Math.max(2000 - (level * 200), 500);
+    var tween = game.add.tween(enemies).to( { x: 125 }, tweenTime, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     tween.onRepeat.add(this.descend, this);
   },
@@ -190,9 +195,9 @@ var playState = {
       isRight = game.input.activePointer.isDown && (game.input.x >= game.world.width * 0.5) && (game.input.y > game.world.height * 0.5);
       isFire = game.input.activePointer.isDown && (game.input.y <= game.world.height * 0.5);
 
-      if (isLeft || cursors.left.isDown) {
+      if ((isLeft || cursors.left.isDown) && player.body.position.x > 0 ) {
         player.body.velocity.x = -200;
-      } else if (isRight || cursors.right.isDown) {
+      } else if ((isRight || cursors.right.isDown) && player.body.position.x < game.world.width - player.width) {
         player.body.velocity.x = 200;
       }
 
@@ -221,25 +226,33 @@ var playState = {
     explosion.play('kaboom', 30, false, true);
 
     if (enemies.countLiving() == 0) {
-      score += 1000;
-      scoreText.text = scoreString + score;
+      spiceBullets.callAll('kill', this);
 
-      spiceBullets.callAll('kill',this);
       var messages = [
-        "Hey hey, you won!\nHave yourself a coffee moment.\n\nTap here to pour!",
-        "Oh you're so good!\n\nTap here to give it another stir!",
-        "That victory, was a little bit special...\n\nTap here to play again!",
-        "Lovely... simply delightful.\n\nTap here to show me more",
-        "That skill makes you wanna bounce up and down a little bit.\n\nTap here to continue bouncing",
+        "Hey hey, you won!\nHave yourself a coffee moment.\n\nMore spices coming...",
+        "Oh you're so good!\n\nGive it another stir!",
+        "That victory, was a little bit special...\n\nMore incoming!",
+        "Lovely... simply delightful.\n\nTime for a little more zing...",
+        "That skill makes you wanna bounce up and down a little bit.\n\nLet's bounce a bit more...",
       ];
 
       stateText.text = messages[Math.floor(Math.random() * messages.length)];
       stateText.visible = true;
       endRect.visible = true;
+      restartTimerText = game.add.text(game.world.centerX, game.world.height - 80, restartTimerValue, { font: '40px ArcadeNormal', fill: 'yellow', backgroundColor: 'red' });
+      restartTimerValue -= 1;
+      console.log(animals);
+      game.time.events.repeat(Phaser.Timer.SECOND * 1, 2, this.restartTimer, this);
+      game.time.events.add(Phaser.Timer.SECOND * 3, this.playAgain, this);
     }
   },
 
-  enemyHitsPlayer: function(player,bullet) {
+  restartTimer: function() {
+    restartTimerText.text = restartTimerValue
+    restartTimerValue -= 1;
+  },
+
+  enemyHitsPlayer: function(player, bullet) {
     bullet.kill();
 
     live = lives.getFirstAlive();
@@ -287,8 +300,10 @@ var playState = {
 
       enemyBullet.reset(shooter.body.x, shooter.body.y);
       enemyBullet.body.allowRotation = false;
-      enemyBullet.rotation = game.physics.arcade.moveToObject(enemyBullet, player, ((Math.random() * 40) + 125)) - 90;
-      firingTimer = game.time.now + ((Math.random() * 2000) + 1000);
+      bulletModifier = (Math.random() * 40) + 125 + (level * 25);
+      firingModifier = Math.max((Math.random() * 2000) + 1000 - (level * 100), 500);
+      enemyBullet.rotation = game.physics.arcade.moveToObject(enemyBullet, player, bulletModifier) - 90;
+      firingTimer = game.time.now + firingModifier;
     }
   },
 
@@ -309,18 +324,39 @@ var playState = {
     bullet.kill();
   },
 
-  restart: function() {
-    lives.callAll('revive');
-    enemies.removeAll();
-    game.tweens.removeAll();
-    this.createEnemies();
-    score = 0;
-    scoreText.text = scoreString + score;
-
-    player.revive();
+  playAgain: function() {
     stateText.visible = false;
     endRect.visible = false;
     tweetButton.visible = false;
+    restartTimerText.visible = false;
+    restartTimerValue = 3;
+    game.tweens.removeAll();
+    level += 1;
+    levelText.text = levelString + (level + 1);
+    bulletModifier = (Math.random() * 40) + 125 + (level * 25);
+    firingModifier = (Math.random() * 2000) + 1000 + (level * 400);
+    this.createEnemies();
+  },
+
+  restart: function() {
+    if (lives.countLiving() < 1) {
+      lives.callAll('revive');
+      enemies.removeAll();
+      game.tweens.removeAll();
+      this.createEnemies();
+      score = 0;
+      scoreText.text = scoreString + score;
+      level = 0;
+      levelText.text = levelString + (level + 1);
+      bulletModifier = (Math.random() * 40) + 125 + (level * 25);
+      firingModifier = (Math.random() * 2000) + 1000 + (level * 400);
+
+      player.revive();
+      stateText.visible = false;
+      endRect.visible = false;
+      tweetButton.visible = false;
+      restartTimerText.visible = false;
+    }
   }
 }
 
