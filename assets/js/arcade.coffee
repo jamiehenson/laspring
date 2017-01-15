@@ -51,6 +51,21 @@ $ ->
     agent = window.navigator.userAgent
     return (agent.indexOf('MSIE') > 0 || ! !agent.match(/Trident\/7\./))
 
+  loadSpiceInvaders = ->
+    if codes.indexOf($(".game-auth-input").val().toLowerCase()) != -1
+      generalGameLoadStuff()
+      $(".game-frame.game-two").css("display", "flex")
+      $(".play-message").text("Heart & Soul")
+      $(".game-auth-box").removeClass("on")
+      $(".game-two .game-icon-content").show()
+      audio = new Audio('assets/tunes/hands64.m4a')
+      audio.play()
+    else
+      $(".game-auth-input").addClass("invalid")
+      setTimeout ( ->
+        $(".game-auth-input").removeClass("invalid")
+      ), 1000
+
   generateColour()
 
   $(".game-icon-content").click ->
@@ -69,19 +84,7 @@ $ ->
       ), 1000
 
   $(".game-auth-go").click ->
-    if codes.indexOf($(".game-auth-input").val().toLowerCase()) != -1
-      generalGameLoadStuff()
-      $(".game-frame.game-two").css("display", "flex")
-      $(".play-message").text("Heart & Soul")
-      $(".game-auth-box").removeClass("on")
-      $(".game-two .game-icon-content").show()
-      audio = new Audio('assets/tunes/hands64.m4a')
-      audio.play()
-    else
-      $(".game-auth-input").addClass("invalid")
-      setTimeout ( ->
-        $(".game-auth-input").removeClass("invalid")
-      ), 1000
+    loadSpiceInvaders()
 
   $(".game-auth-cancel").click ->
     $(".game-auth-box").removeClass("on")
@@ -122,3 +125,6 @@ $ ->
     resetAudio()
 
   $(".outer-arcade").addClass("ie") if determineIE()
+
+  $(document).on 'keyup', '.game-auth-input', (event) ->
+    loadSpiceInvaders() if event.which == 13
