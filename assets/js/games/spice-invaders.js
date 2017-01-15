@@ -241,7 +241,6 @@ var playState = {
       endRect.visible = true;
       restartTimerText = game.add.text(game.world.centerX, game.world.height - 80, restartTimerValue, { font: '40px ArcadeNormal', fill: 'yellow', backgroundColor: 'red' });
       restartTimerValue -= 1;
-      console.log(animals);
       game.time.events.repeat(Phaser.Timer.SECOND * 1, 2, this.restartTimer, this);
       game.time.events.add(Phaser.Timer.SECOND * 3, this.playAgain, this);
     }
