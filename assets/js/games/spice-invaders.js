@@ -232,11 +232,11 @@ var playState = {
       spiceBullets.callAll('kill', this);
 
       var messages = [
-        "Hey hey, you won!\nHave yourself a coffee moment.\n\nMore spices coming...",
+        "Hey hey, you won!\nHave yourself a coffee moment.",
         "Oh you're so good!\n\nGive it another stir!",
-        "That victory, was a little bit special...\n\nMore incoming!",
+        "That victory, was a little bit special...\n\nKeep going!",
         "Lovely... simply delightful.\n\nTime for a little more zing...",
-        "That skill makes you wanna bounce up and down a little bit.\n\nLet's bounce a bit more...",
+        "That skill makes you wanna bounce up and down a little bit...",
       ];
 
       stateText.text = messages[Math.floor(Math.random() * messages.length)];
