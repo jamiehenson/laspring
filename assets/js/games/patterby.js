@@ -1,12 +1,12 @@
 function Patterby() {
-  var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, 'patterby');
+  var game = new Phaser.Game(worldX, worldY, Phaser.AUTO, "patterby");
   var catIcon, pMenuFilter, gameFilter, pMenuTimer = 0, pMenuFlashText;
 
   var menuState = {
     preload: function() {
-      game.load.image('pat-title', 'assets/images/games/pat/pat-title.png');
-      game.load.spritesheet('cat-sheet', 'assets/images/games/pat/cat-sheet.png', 128, 128);
-      game.load.script('filter', 'assets/js/games/retro-filter.js');
+      game.load.image("pat-title", "assets/images/games/pat/pat-title.png");
+      game.load.spritesheet("cat-sheet", "assets/images/games/pat/cat-sheet.png", 128, 128);
+      game.load.script("filter", "assets/js/games/retro-filter.js");
     },
 
     create: function() {
@@ -19,12 +19,12 @@ function Patterby() {
         game.scale.aspectRatio = 1.6;
       }
 
-      pMenuFilter = game.add.filter('Retro', worldX, worldY);
+      pMenuFilter = game.add.filter("Retro", worldX, worldY);
 
       background.filters = [pMenuFilter];
 
-      var icon = game.add.sprite(game.world.centerX, game.world.centerY, 'cat-sheet')
-      var title = game.add.image(game.world.centerX, 10, 'pat-title');
+      var icon = game.add.sprite(game.world.centerX, game.world.centerY, "cat-sheet")
+      var title = game.add.image(game.world.centerX, 10, "pat-title");
       var desc = game.add.text(game.world.centerX, game.world.height - 10, "Pat as many pets as you can within the time, but only pat the right ones - some bite!",
         {font: "18px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: game.world.width, align: "center", backgroundColor: "#0000FF", padding: 10 }
       );
@@ -35,8 +35,8 @@ function Patterby() {
 
       game.add.tween(icon.scale).to({x: 1.25, y: 1.25}, 3000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
-      icon.animations.add('loop');
-      icon.animations.play('loop', 2, true);
+      icon.animations.add("loop");
+      icon.animations.play("loop", 2, true);
       icon.anchor.set(0.5);
       title.anchor.set(0.5, 0);
       desc.anchor.set(0.5, 1);
@@ -55,7 +55,7 @@ function Patterby() {
     },
 
     start: function() {
-      game.state.start('play');
+      game.state.start("play");
     }
   };
 
@@ -65,14 +65,14 @@ function Patterby() {
 
   var playState = {
     preload: function() {
-      game.load.spritesheet('animal-sheet', 'assets/images/games/pat/animals.png', 80, 80);
-      game.load.shader('gameFilter', 'assets/js/games/swirl-filter.frag');
-      game.load.image('twit', 'assets/images/games/twit.png');
+      game.load.spritesheet("animal-sheet", "assets/images/games/pat/animals.png", 80, 80);
+      game.load.shader("gameFilter", "assets/js/games/swirl-filter.frag");
+      game.load.image("twit", "assets/images/games/twit.png");
       game.time.advancedTiming = true;
     },
 
     create: function() {
-      gameFilter = new Phaser.Filter(game, null, game.cache.getShader('gameFilter'));
+      gameFilter = new Phaser.Filter(game, null, game.cache.getShader("gameFilter"));
       gameFilter.setResolution(worldX, worldY);
       background = game.add.sprite(0, 0);
       background.width = worldX;
@@ -160,7 +160,7 @@ function Patterby() {
     drawPets: function() {
       for (var j = 0; j < 3; j++) {
         for (var i = 0; i < 3; i++) {
-          var animal = game.add.sprite((i * 130) + 240, (j * 110) + 95, 'animal-sheet')
+          var animal = game.add.sprite((i * 130) + 240, (j * 110) + 95, "animal-sheet");
           var chosenFrame = Math.floor(Math.random() * activePets.length);
           animal.frame = activePets[chosenFrame];
           animal.anchor.set(0.5);
@@ -206,7 +206,7 @@ function Patterby() {
     animalGenerationLoop: function(xmod, ymod, good) {
       for (var j = 0; j < 2; j++) {
         for (var i = 0; i < 2; i++) {
-          var animal = game.add.sprite((i * 69) + xmod, (j * 69) + ymod, 'animal-sheet')
+          var animal = game.add.sprite((i * 69) + xmod, (j * 69) + ymod, "animal-sheet")
           var chosenFrame = Math.floor(Math.random() * unusedPets.length);
           animal.frame = unusedPets[chosenFrame];
           animal.width = 64;
@@ -237,7 +237,7 @@ function Patterby() {
         for (var i = 0; i < 5; i++) {
           var width = game.world.width / 5;
           var height = game.world.height / 4;
-          var icon = game.add.sprite(width * i, height * j, 'animal-sheet');
+          var icon = game.add.sprite(width * i, height * j, "animal-sheet");
           icon.frame = ((j * 5) + i + randomiser) % 18;
           icon.width = width;
           icon.height = height;
@@ -251,15 +251,15 @@ function Patterby() {
       var pluralisedCritter = score != 50 ? "critters" : "critter";
       var pluralisedPet = score != 50 ? "pets" : "pet";
       var endText = game.add.text(game.world.centerX, 10, "You got " + score + " points!\n\nThat's " + parseInt(score / 50) + " " + pluralisedCritter + " who felt the love.",
-        {font: "32px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: game.world.width, align: "center", backgroundColor: "#0000FF"}
+        { font: "32px ArcadeNormal", fill: "white", wordWrap: true, wordWrapWidth: game.world.width, align: "center", backgroundColor: "#0000FF" }
       );
       var endSubText = game.add.text(game.world.centerX, game.world.height - 10, "Tap here to go again!",
-        {font: "26px ArcadeNormal", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: game.world.width / 1.5, align: "center", backgroundColor: "#0000FF"}
+        { font: "26px ArcadeNormal", fill: "white", wordWrap: true, backgroundColor: "blue", wordWrapWidth: game.world.width / 1.5, align: "center" }
       );
 
-      var tweetButton = game.add.button(game.world.centerX, game.world.height - 110, 'twit', function() {
+      var tweetButton = game.add.button(game.world.centerX, game.world.height - 110, "twit", function() {
         var link = "https://twitter.com/intent/tweet?text=";
-        var tweetString = 'I just patted ' + parseInt(score / 50) + ' ' + pluralisedPet + ' on Patterby whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring';
+        var tweetString = "I just patted " + parseInt(score / 50) + " " + pluralisedPet + " on Patterby whilst listening to @wearelaspring! bit.ly/PlayLASpring #playlaspring";
         var tweet = encodeURIComponent(tweetString);
         window.open(link + tweet, "_blank");
       }, this);
@@ -275,9 +275,9 @@ function Patterby() {
     restart: function() {
       game.state.start(game.state.current);
     }
-  }
+  };
 
-  game.state.add('menu', menuState);
-  game.state.add('play', playState);
-  game.state.start('menu');
+  game.state.add("menu", menuState);
+  game.state.add("play", playState);
+  game.state.start("menu");
 }

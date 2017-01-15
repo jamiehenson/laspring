@@ -19,6 +19,8 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "object-curly-spacing": ["warn", "always"],
+         "no-unused-vars": 0
     }
 }
