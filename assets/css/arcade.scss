@@ -558,3 +558,21 @@ h1.header {
   color: white !important;
   text-align: center !important;
 }
+
+.spotify-widget {
+  display: block;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 92px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.75);
+  z-index: 2;
+  top: 80px;
+  transition: 0.5s all;
+  @media screen and (min-width: $mobile) {
+    top: 130px;
+    transition: 0.5s all;
+    transform: translateX(-50%) scale(0.9);
+  }
+}
