@@ -571,7 +571,7 @@ h1.header {
   top: 80px;
   transition: 0.5s all;
   @media screen and (min-width: $mobile) {
-    top: 130px;
+    top: 90px;
     transition: 0.5s all;
     transform: translateX(-50%) scale(0.9);
   }
