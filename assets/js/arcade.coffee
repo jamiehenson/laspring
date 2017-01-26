@@ -11,7 +11,7 @@ $ ->
     'fox', 'gold', 'krck', '6music', 'premier',
     'rogers', 'brewers', 'penty', 'tones', 'bates',
     'watson', 'amby', 'tour', 'dancer', 'ssd',
-    'anyword'
+    'anyword', 'amyb', 'amby!'
   ]
 
   $(".arcade-player").click ->
