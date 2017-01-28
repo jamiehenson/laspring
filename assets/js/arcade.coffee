@@ -37,7 +37,6 @@ $ ->
     $(".game-menu").addClass("off")
     $(".play-button").addClass("fa fa-volume-up")
     $(".arcade-player").addClass("on").addClass("playing")
-    $(".game-auth-input").val("")
 
   resetAudio = ->
     if typeof(audio) == 'object'
@@ -51,44 +50,19 @@ $ ->
     agent = window.navigator.userAgent
     return (agent.indexOf('MSIE') > 0 || ! !agent.match(/Trident\/7\./))
 
-  loadSpiceInvaders = ->
-    if codes.indexOf($(".game-auth-input").val().toLowerCase()) != -1
-      generalGameLoadStuff()
-      $(".game-frame.game-two").css("display", "flex")
-      $(".play-message").text("Heart & Soul")
-      $(".game-auth-box").removeClass("on")
-      $(".game-two .game-icon-content").show()
-      audio = new Audio('assets/tunes/hands64.m4a')
-      audio.play()
-    else
-      $(".game-auth-input").addClass("invalid")
-      setTimeout ( ->
-        $(".game-auth-input").removeClass("invalid")
-      ), 1000
-
   generateColour()
 
   $(".game-icon-content").click ->
+    generalGameLoadStuff()
     if $(this).parent().hasClass("game-one")
-      generalGameLoadStuff()
       $(".game-frame.game-one").css("display", "flex")
       $(".play-message").text("Passerby")
       audio = new Audio('assets/tunes/passerby64.m4a')
-      audio.play()
-    if $(this).parent().hasClass("game-two")
-      $(".game-two .game-icon-content").hide()
-      $(".game-auth-box").addClass("on")
-      $(".game-auth-input").addClass("open")
-      setTimeout ( ->
-        $(".game-auth-input").removeClass("open")
-      ), 1000
-
-  $(".game-auth-go").click ->
-    loadSpiceInvaders()
-
-  $(".game-auth-cancel").click ->
-    $(".game-auth-box").removeClass("on")
-    $(".game-two .game-icon-content").show()
+    else if $(this).parent().hasClass("game-two")
+      $(".game-frame.game-two").css("display", "flex")
+      $(".play-message").text("Heart & Soul")
+      audio = new Audio('assets/tunes/hands64.m4a')
+    audio.play()
 
   $(".back").click ->
     game.state.start('menu') for game in Phaser.GAMES
@@ -125,6 +99,3 @@ $ ->
     resetAudio()
 
   $(".outer-arcade").addClass("ie") if determineIE()
-
-  $(document).on 'keyup', '.game-auth-input', (event) ->
-    loadSpiceInvaders() if event.which == 13
