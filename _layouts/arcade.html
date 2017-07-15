@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <title>{{ page.title }}</title>
+    <meta content="{{ site.author.name }}" name="author"/>
+    <meta content="{{ site.author.name }}" property="og:title"/>
+    <meta content="{{ site.description }}" name="description"/>
+    <meta content="{{ site.description }}" property="og:description"/>
+    <meta content="http://wearelaspring.com/assets/images/logo-square-palm.png" property="og:image"/>
+    <meta content="http://wearelaspring.com" property="og:url"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="assets/css/arcade.css?body=1" media="all" rel="stylesheet" type="text/css"></link>
+    <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
+    <link href="assets/images/favicon.ico" rel="icon" type="image/x-icon"></link>
+    <script src="assets/js/phaser.min.js"></script>
+  </head>
+  <body>
+    <h1 class="header">L.A. Spring</h1>
+    <div class="outer-arcade">
+      <div class="arcade-header">
+        <div class="left-group">
+          <a href="https://facebook.com/wearelaspring" target="_blank"><i class="fa fa-facebook"></i></a>
+          <a href="https://twitter.com/wearelaspring" target="_blank"><i class="fa fa-twitter"></i></a>
+        </div>
+        <span class="title">&nbsp;</span>
+        <div class="right-group">
+          <a href="https://instagram.com/wearelaspring" target="_blank"><i class="fa fa-instagram"></i></a>
+          <a href="https://open.spotify.com/artist/1bt62fFZd8yHPanztqbA0v" target="_blank"><i class="fa fa-spotify"></i></a>
+        </div>
+        <iframe class="spotify-widget" src="https://embed.spotify.com/follow/1/?uri=spotify:artist:1vCWHaC5f2uS3yhpwWbIA6&size=basic&theme=light&show-count=0" width="200" height="25" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="inner-arcade">
+        <div class="screen">
+          <div class="game-menu">
+            <div class="game-icon game-one">
+              <div class="game-icon-content">
+                <div class="game-name">PATTERBY</div>
+                <i class="fa fa-unlock"></i>
+                <div class="game-song">
+                  <i class="fa fa-music"></i>
+                  PASSERBY
+                </div>
+              </div>
+            </div>
+            <div class="game-icon game-two">
+              <div class="game-icon-content">
+                <div class="game-name">SPICE INVADERS</div>
+                <i class="fa fa-unlock"></i>
+                <div class="game-song">
+                  <i class="fa fa-music"></i>
+                  HEART & SOUL
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-view">
+            <div class="game-frame game-one waves">
+              <div class="header">
+                <span>PATTERBY</span>
+                <span class="back">Back</span>
+              </div>
+              <div id="patterby" class="game"></div>
+            </div>
+            <div class="game-frame game-two heart">
+              <div class="header">
+                <span>SPICE INVADERS</span>
+                <span class="back">Back</span>
+              </div>
+              <div id="spice-invaders" class="game"></div>
+            </div>
+          </div>
+
+          <div class="about-view off">
+            <p>L.A. Spring are a London based three-piece who came together in summer 2016, making waves with an impressive live show and their debut single 'Passerby' (Made in Chelsea, Radio X, BBC Introducing).</p>
+            <p class="about-back back">Alright lads, I've heard enough</p>
+          </div>
+
+          <div class="arcade-player">
+            <span class="player-info">
+              <i class="play-button"></i>
+              <span class="play-message"></span>
+              <i class="play-button"></i>
+            </span>
+          </div>
+          <div class="overlay">AV-1</div>
+        </div>
+      </div>
+
+      <div class="arcade-drawer carbon">
+        <span class="drawer-button about-link">ABOUT</span>
+        <a class="drawer-button" href="mailto:info@wearelaspring.com">CONTACT</a>
+        <span class="drawer-button colour-shuffle"><i class="fa fa-refresh"></i></span>
+      </div>
+
+      <div class="arcade-padder carbon-fibre">
+        <div class="palm-pic">
+          <img src="assets/images/palm.png"></img>
+        </div>
+        <div class="credz-link">
+          <a href="http://jh47.com" target="_blank"><span class="credz">JH47</span></a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="assets/js/arcade.js"></script>
+    <script src="assets/js/games/patterby.js"></script>
+    <script src="assets/js/games/spice-invaders.js"></script>
+    <script src="assets/js/games/phaser-stuff.js"></script>
+
+    {% include partials/lower-scripts.html %}
+  </body>
+</html>

@@ -1,0 +1,578 @@
+---
+---
+
+@import "arcade/surfaces";
+@import "arcade/animations";
+
+$large: 1200px;
+$mobile: 768px;
+
+$ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+$screen-background: #121010;
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'ArcadeNormal';
+  src: url('../fonts/arcade.eot');
+  src:
+    local('Arcade Normal'),
+    url('../fonts/arcade.ttf') format('truetype'),
+    url('../fonts/arcade.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Lemon/Milk';
+  src: url('../fonts/lemon.eot');
+  src:
+    local('Lemon/Milk'),
+    url('../fonts/lemon.otf') format('otf'),
+    url('../fonts/lemon.ttf') format('truetype'),
+    url('../fonts/lemon.woff') format('woff');
+}
+
+body {
+  background: #333;
+  background: radial-gradient(circle, #666, black);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  min-width: 400px;
+  margin: 0 !important;
+  padding: 0 !important;
+  @media screen and (min-width: $mobile) {
+    align-items: center;
+  }
+}
+
+h1.header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.1em;
+  z-index: 0;
+}
+
+.outer-arcade {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 720px;
+  background: black;
+  transition: 0.5s all;
+  margin: 0 auto;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0;
+  transition: 0.5s all;
+  z-index: 1;
+  @media screen and (min-width: $mobile) {
+    border-left: 1em solid white;
+    border-right: 1em solid white;
+    margin: 3em auto;
+  }
+}
+
+.inner-arcade {
+  display: flex;
+  flex-direction: column;
+  background: black;
+  background: radial-gradient(circle, black, #333);
+  transform-origin: top;
+  box-shadow: inset 0 0 10px 0 grey;
+  transition: 0.5s all;
+  @media screen and (min-width: $mobile) {
+    border-radius: 2em;
+    margin: 1em;
+    border-radius: 4em;
+    margin: 2em 1em -1em;
+    transform: perspective(500px) rotateX(7deg) scale(0.85);
+  }
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  font-family: "ArcadeNormal";
+  margin: 0.5em;
+  box-shadow: inset 0 0 15px 0 white;
+  overflow: hidden;
+  transition: 0.5s all;
+
+  transform: scale(0.000,0.0001) translate3d(0,0,0);
+
+  animation: turn-on 4s linear;
+  animation-fill-mode: forwards;
+
+  @media screen and (min-width: $mobile) {
+    flex: 1;
+    margin: 2.5em;
+  }
+
+  &:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: transparentize($screen-background,0.9);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+    transition: 0.5s all;
+  }
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(transparentize($screen-background,1) 50%, transparentize(darken($screen-background,10),0.75) 50%), linear-gradient(90deg,transparentize(red,0.94),transparentize(green,0.98),transparentize(blue,0.94));
+    z-index: 2;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+  }
+
+  .overlay {
+    color: #00FF00;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3em;
+    visibility:hidden;
+    pointer-events: none;
+    animation: overlay-anim 5s linear;
+  }
+}
+
+.game-menu {
+  display: flex;
+  flex-flow: row wrap;
+  flex-grow: 1;
+  padding: 2em;
+  animation: bgscreen 10s infinite linear;
+  animation-play-state: running;
+  &.off {
+    display: none !important;
+    animation-play-state: paused;
+  }
+  .game-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: green;
+    border: 3px solid yellow;
+    margin: 0.25em;
+    text-align: center;
+    font-size: 1em;
+    flex-direction: column;
+    flex-grow: 1;
+    transform: rotate(0deg);
+    background-size: contain;
+    background-position: center;
+    animation: 15s background-travel infinite ease-in-out;
+    &.game-one {
+      background-image: url("../images/pixelpat.png");
+    }
+    &.game-two {
+      background-image: url("../images/pixelspice.png");
+    }
+    .game-icon-content {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      background: rgba(0,0,0,0.7);
+      padding: 1em;
+      color: white;
+      width: 100%;
+      cursor: pointer;
+      &:hover, &:active {
+        background: rgba(0,0,0,0.5);
+      }
+    }
+    @media screen and (min-width: $mobile) {
+      font-size: 1.3em;
+    }
+  }
+  .game-name {
+    flex: 1;
+  }
+  .game-song {
+    flex: 1;
+    font-size: 1em;
+    justify-content: flex-end;
+  }
+  .fa-lock, .fa-unlock {
+    font-size: 4em;
+  }
+  .game-auth-box {
+    display: none;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    &.on {
+      display: flex;
+    }
+    .game-auth-input {
+      font-size: 1.5em;
+      padding: 0.5em;
+      font-family: "ArcadeNormal";
+      width: 100%;
+      background: #333;
+      color: lime;
+      text-align: center;
+      margin-bottom: 0.5em;
+      transition: 0.5s all;
+      &.open {
+        background-color: grey;
+        transition: 0.5s all;
+      }
+      &.invalid {
+        background-color: red;
+        transition: 0.5s all;
+      }
+    }
+    .game-auth-button {
+      padding: 0.5em;
+      background: hotpink;
+      color: yellow;
+      border: 3px solid yellow;
+      margin: 0.5em auto;
+      width: 150px;
+      cursor: pointer;
+      &:hover, &:active {
+        background: red;
+      }
+      @media screen and (max-width: $mobile - 1) {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+.game-view {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: "ArcadeNormal";
+  color: white;
+  flex-grow: 1;
+  .game-frame {
+    display: none;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+  }
+  .header, .game, .footer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  .header {
+    font-size: 1em;
+    text-align: center;
+    padding: 0.5em;
+  }
+  .game {
+    height: 100%;
+    padding-bottom: 1em;
+  }
+  .back {
+    padding: 0.5em;
+    margin-left: 1em;
+    border: 3px solid yellow;
+    background: blue;
+    cursor: pointer;
+    font-size: 0.8em;
+    &:hover, &:active {
+      background: red;
+    }
+  }
+}
+
+.arcade-header, .arcade-player, .arcade-drawer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arcade-header {
+  font-size: 2.5em;
+  font-family: "Lemon/Milk";
+  background-color: goldenrod;
+  background-image: url('../images/noise.png');
+  color: white;
+  height: 120px;
+  box-shadow: inset 0 0px 4px 0 black;
+  text-shadow: 0 2px 2px black;
+  padding: 0 0.3em;
+  margin-top: -10px;
+  transition: 0.5s all;
+  border-radius: 5px;
+  letter-spacing: 5px;
+  border-left: 5px solid white;
+  border-right: 5px solid white;
+  @media screen and (min-width: $mobile) {
+    border-left: 15px solid white;
+    border-right: 15px solid white;
+    transform: perspective(500px) rotateX(2deg) scale(1.1);
+  }
+  span {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    background: {
+      image: url("../images/laspring-lemon.png");
+      size: contain;
+      repeat: no-repeat;
+      position: center;
+    }
+  }
+  a {
+    color: white;
+    transition: 0.5s all;
+    &:hover, &:active {
+      color: red;
+      transition: 0.5s all;
+    }
+  }
+  i {
+    font-size: 0.7em;
+    margin: 15px 25px;
+  }
+  @media screen and (max-width: $mobile - 1) {
+    font-size: 2em;
+    i {
+      margin: 15px;
+    }
+  }
+  .left-group, .right-group {
+    display: flex;
+    width: 175px;
+    @media screen and (max-width: $mobile - 1) {
+      width: 75px;
+      flex-direction: column;
+    }
+  }
+  .right-group {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+}
+
+.about-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "ArcadeNormal";
+  color: white;
+  flex: 1;
+  flex-direction: column;
+  padding: 0.5em;
+  font-size: 1.3em;
+  text-align: center;
+  line-height: 1.5;
+  background: {
+    image: url("../images/pixelband.jpg");
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+  }
+  p {
+    padding: 0.5em;
+    background: rgba(0, 100, 0, 0.5);
+  }
+  @media screen and (max-width: $mobile - 1) {
+    font-size: 1em;
+  }
+  &.off {
+    display: none !important;
+  }
+  .about-back {
+    font-size: 0.65em;
+    background: hotpink;
+    border: 3px solid yellow;
+    padding: 0.5em;
+    cursor: pointer;
+    &:hover, &:active {
+      background: red;
+    }
+  }
+}
+
+.arcade-player {
+  cursor: pointer;
+  display: none;
+  &.on {
+    display: flex;
+    &:active {
+      span, i {
+        color: yellow;
+      }
+    }
+  }
+  &.playing {
+    span, i {
+      color: lime;
+    }
+  }
+  &.paused {
+    span, i {
+      color: red;
+    }
+  }
+  .player-info {
+    width: 100%;
+    padding: 0.5em;
+    color: white;
+    background: blue;
+    border: 3px solid yellow;
+    text-align: center;
+    @media screen and (max-width: $mobile - 1) {
+      font-size: 0.75em;
+    }
+  }
+  .play-button {
+    font-size: 1.2em;
+  }
+}
+
+.arcade-drawer {
+  height: 100px;
+  color: white;
+  font-size: 1em;
+  font-family: "Lemon/Milk";
+  z-index: 1;
+  box-shadow: inset 0 0 15px 2px black;
+  transition: 0.5s all;
+  @media screen and (min-width: $mobile) {
+    border: 15px solid white;
+    border-top: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: perspective(500px) rotateX(30deg) scale(1.105);
+  }
+  .drawer-button {
+    color: white;
+    margin: 0 0.5em;
+    padding: 0.5em;
+    border-radius: 1em;
+    text-shadow: 0 2px 2px black;
+    border: 2px solid white;
+    width: 150px;
+    text-align: center;
+    transition: 0.5s all;
+    text-decoration: none;
+    letter-spacing: 5px;
+    cursor: pointer;
+    &:hover, &:active {
+      text-decoration: none;
+      box-shadow: inset 0 0 3px 1px black;
+      transition: 0.3s all;
+      transform: scale(0.99);
+    }
+    &.colour-shuffle {
+      width: initial;
+      padding-left: 0.75em;
+    }
+  }
+}
+
+.arcade-padder {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100px;
+  transition: 0.5s all;
+  box-shadow: inset 0 0px 15px 5px black;
+  @media screen and (min-width: $mobile) {
+    height: 200px;
+    transform: scale(1.16);
+    border-left: 15px solid white;
+    border-right: 15px solid white;
+    border-radius: 10px;
+  }
+  .palm-pic {
+    flex: 10;
+    text-align: center;
+    img {
+      margin-top: 30px;
+    }
+  }
+  .credz-link {
+    flex: 1;
+    padding: 0.5em;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+    a {
+      text-decoration: none;
+    }
+  }
+  .credz {
+    color: #444;
+    font-family: "Lemon/Milk";
+    letter-spacing: 5px;
+    text-shadow: 1px 1px 1px black;
+    transition: 0.5s all;
+    &:hover, &:active {
+      color: #666;
+      transition: 0.5s all;
+    }
+  }
+}
+
+.ie {
+  .screen {
+    min-height: 480px;
+  }
+  .game-view {
+    .header, .game, .footer {
+      flex: inherit !important;
+    }
+  }
+  .game-auth-input {
+    width: 300px !important;
+  }
+}
+
+.buorg {
+  font-family: "Lemon/Milk" !important;
+  background: black !important;
+  color: white !important;
+  text-align: center !important;
+}
+
+.spotify-widget {
+  display: block;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 92px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.75);
+  z-index: 2;
+  top: 80px;
+  transition: 0.5s all;
+  @media screen and (min-width: $mobile) {
+    top: 90px;
+    transition: 0.5s all;
+    transform: translateX(-50%) scale(0.9);
+  }
+}
